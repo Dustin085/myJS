@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 計算 BMI -->
+    <!-- BMI = 體重/身高(m)的平方 -->
+    <!-- BMI值取到小數第二位 -->
+    <script>
+        // w=>體重(kg), h=>身高(m)
+        let w = 150;
+        let h = 1.79;
+        // toFixed(2)取出小數點後兩位, Number()轉換成數值
+        let bmi = Number((w / (h ** 2)).toFixed(2));
+
+        // 測試用
+        // bmi = 35;
+        console.log(`My BMI is ${bmi}`);
+
+        // 檢查BMI落在哪個區間並顯示訊息結果
+        // 檢查BMI有沒有小於18.5
+        if (bmi < 18.5) {
+            // 檢查條件成立
+            console.log('體重過輕');
+        }
+        // 區間資料取交集=>&&(邏輯運算子AND)
+        // 檢查18.5 <= bmi < 24
+        if (bmi >= 18.5 && bmi < 24) {
+            console.log('正常範圍');
+        }
+        if (bmi >= 24 && bmi < 27) {
+            console.log('過重');
+        }
+        if (bmi >= 27 && bmi < 30) {
+            console.log('輕度肥胖');
+        }
+        if (bmi >= 30 && bmi < 35) {
+            console.log('中度肥胖');
+        }
+        if (bmi >= 35) {
+            console.log('重度肥胖');
+        }
+    </script>
+</body>
+
+</html>

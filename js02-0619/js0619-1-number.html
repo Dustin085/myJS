@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>js第二堂課</h2>
+    <h2>變數宣告</h2>
+    <script>
+        // 變數宣告的語法
+        // 建立變數的語法
+        // var 變數名稱;
+        // var=>允許同一個檔案中的變數重複宣告(不嚴謹)
+        // 重複宣告時會造成記憶體浪費,占用兩個位置
+        // let=>不允許同一個檔案中的變數重複宣告(嚴謹)
+        // const=>一旦建立不能更改數值=>常數
+
+        // 數值變數
+        let price;     //建立price變數
+        price = 100;   //給值
+        let qty = 10;   //建立qty變數的同時給值
+        // undefined => 空值
+
+        // 傳統串接方式
+        console.log('單價:' + price + '元');
+        console.log('數量:' + qty);
+        console.log('小計:' + price * qty + '元');
+
+        // 字串字面值串接資料(頭尾加上反引號)
+        // 遇到變數或運算式要加上${變數或運算式}
+        console.log(`單價:${price}元`);
+        console.log(`數量:${qty}`);
+        console.log(`小計:${price * qty}元`);
+    </script>
+</body>
+
+</html>
