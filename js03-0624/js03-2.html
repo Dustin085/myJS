@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js03-2</title>
+</head>
+<body>
+    <script>
+        // 輸入視窗
+        let strName;
+        // 如果輸入視窗被按了取消，會回傳null
+        strName = window.prompt('請輸入您的大名');
+
+        // 輸出視窗(訊息視窗) => 強制視窗，必須要按下確定後才會消失
+        window.alert('早安!'+strName);
+        // window.alert(`早安!${strName}`);
+    </script>
+</body>
+</html>
