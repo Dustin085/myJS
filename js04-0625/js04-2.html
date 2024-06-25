@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js04-2</title>
+</head>
+
+<body>
+    <script>
+        // 血型判斷(大小寫區分)
+        // A => A型
+        // a => A型
+        // A,B,AB,O
+        // if-else-if
+        let bldType = prompt('請輸入您的血型');
+
+        /*
+        if (bldType == 'a' || bldType == 'A') {
+            console.log('您的血型是A型');
+        } else if (bldType == 'b' || bldType == 'B') {
+            console.log('您的血型是B型');
+        } else if (bldType == 'ab' || bldType == 'AB') {
+            console.log('您的血型是AB型');
+        } else if (bldType == 'o' || bldType == 'O') {
+            console.log('您的血型是O型');
+        }
+        // switch
+        switch (bldType) {
+            case 'a':
+            case 'A':
+                console.log('您的血型是A型');
+                break;
+            case 'b':
+            case 'B':
+                console.log('您的血型是B型');
+                break;
+            case 'ab':
+            case 'AB':
+                console.log('您的血型是AB型');
+                break;
+            case 'o':
+            case 'O':
+                console.log('您的血型是O型');
+                break;
+        }
+        */
+
+        // 先轉換成小寫的方法
+        // if-else-if
+        if (bldType == null) {
+            console.log('按了取消');
+        } else {
+            // 按了確定
+            bldType = bldType.toLowerCase().trim();
+            // 去除多餘的空白並轉換成小寫
+            if (bldType.trim() == '') {
+                console.log('尚未輸入血型');
+            } else if (bldType == 'a') {
+                console.log('您的血型是A型');
+            } else if (bldType == 'b') {
+                console.log('您的血型是B型');
+            } else if (bldType == 'ab') {
+                console.log('您的血型是AB型');
+            } else if (bldType == 'o') {
+                console.log('您的血型是O型');
+            } else {
+                // 以上都不是
+                console.log('血型代號err');
+            }
+        }
+
+        // 換行
+        document.write('<br>');
+
+        // switch
+        let bldType2 = prompt('請輸入血型V2');
+
+        if (bldType2 == null) {
+            console.log('按了取消');
+        } else {
+            switch (bldType2.toLowerCase().trim()) {
+                case '':
+                    console.log('尚未輸入血型');
+                    break;
+                case 'a':
+                    console.log('您的血型是A型');
+                    break;
+                case 'b':
+                    console.log('您的血型是B型');
+                    break;
+                case 'ab':
+                    console.log('您的血型是AB型');
+                    break;
+                case 'o':
+                    console.log('您的血型是O型');
+                    break;
+                default:
+                    // 以上皆非
+                    console.log('血型代號err');
+                    break;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

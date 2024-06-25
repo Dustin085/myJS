@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js04-3</title>
+</head>
+
+<body>
+    <script>
+        // 血型判斷(大小寫區分)
+        // A => A型
+        // a => A型
+        // A,B,AB,O
+        // 轉換大小寫
+        // if-else-if
+        let bldType = prompt('請輸入您的血型');
+        if (bldType == null) {
+            console.log('按了取消');
+        } else {
+            bldType = bldType.trim().toUpperCase();
+
+            if (bldType == '') {
+                console.log('尚未輸入血型');
+            } else if (bldType == 'A') {
+                console.log('A型');
+            } else if (bldType == 'B') {
+                console.log('B型');
+            } else if (bldType == 'AB') {
+                console.log('AB型');
+            } else if (bldType == 'O') {
+                console.log('O型');
+            } else {
+                console.log('血型代號err');
+            }
+        }
+
+        let bldType2 = prompt('請輸入血型V2');
+
+        if (bldType2 == null) {
+            console.log('按了取消');
+        } else {
+            switch (bldType2.toUpperCase().trim()) {
+                case '':
+                    console.log('尚未輸入血型');
+                    break;
+                case 'A':
+                    console.log('您的血型是A型');
+                    break;
+                case 'B':
+                    console.log('您的血型是B型');
+                    break;
+                case 'AB':
+                    console.log('您的血型是AB型');
+                    break;
+                case 'O':
+                    console.log('您的血型是O型');
+                    break;
+                default:
+                    // 以上皆非
+                    console.log('血型代號err');
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
