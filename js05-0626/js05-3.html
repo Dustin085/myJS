@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ex7:
+        // 彈出輸入視窗=>prompt()
+        // 輸入運算起始值
+        // 輸入運算結束值
+        // 算出奇數和
+        // 算出偶數和
+
+        let beginNum = Number(prompt('請輸入運算起始值'));
+        let endNum = Number(prompt('請輸入運算結束值'));
+        let sumOdd = 0;
+        let sumEven = 0;
+
+        // 狀況一.起始值 < 結束值
+        // 狀況二.起始值 > 結束值，需要調換
+        if (endNum < beginNum) {
+            // 暫存endNum
+            let temp = endNum;
+            // 調換起迄
+            endNum = beginNum;
+            beginNum = temp;
+        }
+
+        for (let i = beginNum; i <= endNum; i++) {
+            if (i % 2 === 1) {
+                // 奇數和
+                sumOdd += i;
+            } else if (i % 2 === 0) {
+                // 偶數和
+                sumEven += i;
+            }
+        }
+
+
+        document.write(`${beginNum}到${endNum}的奇數和=${sumOdd}`);
+        document.write(`<br>`);
+        document.write(`${beginNum}到${endNum}的偶數和=${sumEven}`);
+
+    </script>
+</body>
+
+</html>

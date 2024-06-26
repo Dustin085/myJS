@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ex6:請用一個迴圈，找出1-10之中，顯示以下結果
+        // 1-10之中3的倍數:3 6 9
+        // 1-10之中3的倍數合計為:3+6+9=18
+        // 1-10之中5的倍數:5 10
+        // 1-10之中5的倍數合計為:5+10=15
+
+        // 建立一個存放三的倍數的變數
+        // 建立一個存放五的倍數的變數
+        let ansThree = '';
+        let ansThreeb = '';
+        // 建立變數後習慣上會先給值(ex.空字串, 0)
+        let ansFive = '';
+        let ansFiveb = '';
+        let sumThree = 0;
+        let sumFive = 0;
+        // 寫迴圈找出三和五的倍數
+        for (let i = 1; i <= 10; i++) {
+            if (i % 3 === 0) {
+                // ansThree = ansThree + i.toString() + ' ';
+                ansThree += i.toString() + ' ';
+                // 各別保存起來(串接)
+                ansThreeb += i.toString();
+                if (i != (parseInt(10/3)*3)) {
+                    ansThreeb += '+';
+                }
+                // 累計3的倍數
+                sumThree += i;
+            } else if (i % 5 === 0) {
+                ansFive = ansFive + i.toString() + ' ';
+                // 各別保存起來(串接)
+                ansFiveb += i.toString();
+                if (i != 10) {
+                    ansFiveb += '+';
+                }
+                sumFive += i;
+            }
+        }
+        // `${x}` => 字串字面值寫法，' '+ x + 'affa' =>一般串接方式
+        document.write(`1-10之中3的倍數:${ansThree}`);
+        document.write('<br>');
+        document.write(`1-10之中3的倍數合計為:${ansThreeb}=${sumThree}`);
+        document.write('<br>');
+        // document.write(`1-10之中5的倍數:${ansFive}`);
+        document.write('1-10之中5的倍數:' + ansFive);
+        document.write('<br>');
+        document.write(`1-10之中5的倍數合計為:${ansFiveb}=${sumFive}`);
+
+        // try:在1~x之中y的倍數找到其最大值(使用function)
+        function topTime(x, y) {
+            // let result = 0;
+            // for (let i = 1; i <= x; i++) {
+            //     if (i % y === 0) {
+            //         result = i;
+            //     }
+            // }
+            // return result
+            
+            return parseInt(x/y)*y;
+        }
+        console.log(topTime(88,5));
+    </script>
+</body>
+
+</html>
