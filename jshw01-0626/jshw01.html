@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作業1：猜數字</title>
+</head>
+
+<body>
+    <script>
+
+        // 作業一：猜數字
+        /*
+        內定一個數字結果 => let bingoNum = 99
+        彈出輸入視窗，輸入數字
+        最多能夠猜3次
+        --
+        三次內答對，顯示結果如下
+        第1次：11
+        第2次：99
+        答對了
+        --
+        三次內答錯，顯示結果如下
+        第1次：11
+        第2次：88
+        第3次：66
+        挑戰失敗
+        */
+
+        let bingoNum = 99;  // 正確數字
+        let userIput = 0;   // 使用者輸入
+        let guessTimes = 0; // 目前猜到第幾次
+        let totChance = 3;  // 總共有幾次機會
+        let otputStr = '';  // 最後要印出的字串
+        let isRight = false;// 是否猜對了
+
+        // 猜測次數由零開始，猜三次=>guessTimes = 2
+        for (guessTimes = 0; guessTimes < totChance; guessTimes++) {
+            userIput = prompt(`猜數字遊戲！請猜一個0~100的數字，尚有${3 - guessTimes}次機會`);
+
+            otputStr += `第${guessTimes + 1}次 : `;
+            if (userIput == null) {
+                otputStr += `按了取消<br>`;
+            } else if (userIput == '') {
+                otputStr += `未作答<br>`;
+            } else {
+                let userAns = Number(userIput);
+                otputStr += `${userIput}<br>`;
+                if (userAns === 99) {
+                    isRight = true;
+                    break;
+                }
+            }
+        }
+        document.write(otputStr);
+        if (isRight) {
+            document.write('答對了');
+        } else {
+            document.write('挑戰失敗')
+        }
+
+
+    </script>
+</body>
+
+</html>
