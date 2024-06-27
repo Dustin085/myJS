@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 作業一：猜數字
+        /*
+        內定一個數字結果 => let bingoNum = 99
+        彈出輸入視窗，輸入數字
+        最多能夠猜3次
+        --
+        三次內答對，顯示結果如下
+        第1次：11
+        第2次：99
+        答對了
+        --
+        三次內答錯，顯示結果如下
+        第1次：11
+        第2次：88
+        第3次：66
+        挑戰失敗
+        */
+
+        let bingoNum = 99;
+
+        for (let i = 1; i <= 3; i++) {
+            // 總共有三次機會，所以使用for迴圈跑三次
+            let yourAns = Number(prompt('猜數字，請輸入0-99的數字'));
+            // 將玩家猜測的答案轉成數值後放到yourAns
+            // 開始判斷玩家是否猜對
+            if (yourAns == bingoNum) {
+                // 答對的情況
+                document.write('第' + i + '次:' + yourAns + '<br>'); // 第?次:??(換行)
+                document.write('答對了');
+                break; // 一旦答對就跳出迴圈
+            } else {
+                // 答錯的情況
+                document.write('第' + i + '次:' + yourAns + '<br>'); // 第?次:??(換行)
+                
+                // 只有在第三次猜錯時才要顯示挑戰失敗
+                if (i == 3) {
+                    document.write('挑戰失敗');
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
