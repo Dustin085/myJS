@@ -35,9 +35,9 @@
         let otputStr = '';  // 最後要印出的字串
         let isRight = false;// 是否猜對了
 
-        // 猜測次數由零開始，猜三次=>guessTimes = 2
+        // 猜測次數由零開始，第三次=>guessTimes = 2
         for (guessTimes = 0; guessTimes < totChance; guessTimes++) {
-            userIput = prompt(`猜數字遊戲！請猜一個0~100的數字，尚有${3 - guessTimes}次機會`);
+            userIput = prompt(`猜數字遊戲！請猜一個0~100的數字，尚有${totChance - guessTimes}次機會`);
 
             otputStr += `第${guessTimes + 1}次 : `;
             if (userIput == null) {
@@ -45,9 +45,11 @@
             } else if (userIput == '') {
                 otputStr += `未作答<br>`;
             } else {
-                let userAns = Number(userIput);
+                // 紀錄猜到的答案
                 otputStr += `${userIput}<br>`;
-                if (userAns === 99) {
+                // 轉型並檢測是否答對
+                let userAns = Number(userIput);
+                if (userAns === bingoNum) {
                     isRight = true;
                     break;
                 }
