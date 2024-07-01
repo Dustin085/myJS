@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 請顯示1-100中，5的倍數值並加總
+        // 直到合計大於50就結束迴圈
+
+        // i=5 , tot=5
+        // i=10, tot=15
+        // i=15, tot=30
+        // i=20, tot=50
+        // i=25, tot=75
+
+        // for迴圈
+        document.write('----- for -----<br>');
+        let sum = 0;
+        for (let i = 1; i <= 100; i++) {
+            if (i % 5 == 0) {
+                sum += i;
+                document.write(`i=${i}, sum=${sum}<br>`);
+                if (sum > 50) {
+                    break;
+                }
+            }
+        }
+        document.write('<hr>');
+        document.write('----- for.v2 -----<br>');
+        let sum4 = 0;
+        for (let i = 1; sum4 <= 50; i++) {
+            if (i * 5 <= 100) {
+                sum4 += i * 5;
+                document.write(`i=${i * 5}, sum4=${sum4}<br>`);
+            }
+        }
+        document.write('<hr>');
+        // while迴圈
+        document.write('----- while -----<br>');
+        let sum2 = 0;
+        let i2 = 1;
+        while (sum2 <= 50) {
+            if (i2 * 5 <= 100) {
+                sum2 += i2 * 5;
+                document.write(`i2=${i2 * 5}, sum2=${sum2}<br>`);
+                i2++;
+            } else {
+                break;
+            }
+        }
+        document.write('<hr>');
+        // do-while迴圈
+        document.write('----- do-while -----<br>');
+        let sum3 = 0;
+        let i3 = 1;
+        do {
+            if (i3 * 5 <= 100) {
+                sum3 += i3 * 5;
+                document.write(`i3=${i3 * 5}, sum3=${sum3}<br>`);
+                i3++;
+            }
+        } while (sum3 <= 50);
+        document.write('<hr>');
+    </script>
+</body>
+
+</html>

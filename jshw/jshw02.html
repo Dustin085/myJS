@@ -24,6 +24,31 @@
             }
             document.write('<br>');
         }
+        
+        // 撰寫迴圈時應避免無窮迴圈
+        // 改寫成
+        // *****
+        // ****
+        // ***
+        // **
+        // *
+
+        // 方法一、改寫外迴圈(i迴圈)
+        for (let i = totRow - 1; i >= 0; i--) {
+            for (let j = 0; j <= i; j++) {
+                document.write('*');
+            }
+            document.write('<br>');
+        }
+
+        // 方法二、改寫內迴圈(j迴圈)
+        for (let i = 0; i < totRow; i++) {
+            for (let j = totRow; j > i; j--) {
+                document.write('*');
+            }
+            document.write('<br>');
+        }
+
     </script>
 </body>
 
