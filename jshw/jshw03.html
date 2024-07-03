@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 作業3：猜數字，直到猜對才結束
+
+        // --- 題目區 ---
+        // 用亂數產生一個值：60
+        // 輸入資訊顯示console.log()
+        // 第1次：50 => 太小了（提示：50-100）
+        // 第2次：90 => 太大了（提示：50-90）
+        // 第3次：80 => 太大了（提示：50-80）
+        // 第4次：55 => 太小了（提示：55-80）
+        // 第5次：60 => 猜對了
+
+        // --- 函式區 ---
+
+        // inputOnlyNum()會擋掉非數值、沒輸入就按確認的情況，並且請使用者重新輸入(重新進入函式)
+        // 傳回值會先轉成數值，按取消則傳回null
+        function inputOnlyNum(minNum, maxNum) {
+
+            // let input = '';
+            
+            let input = prompt(`猜數字遊戲！請輸入${minNum}-${maxNum}之間的數字`);
+            if (input == null) {
+                // 按下取消
+                return input;
+            } else if (input == '') {
+                // 沒輸入就確認
+                alert('未輸入就按下了確認，請重新輸入');
+                return inputOnlyNum(minNum, maxNum);
+            } else if (isNaN(input)) {
+                // 非數值
+                alert('非數值，請重新輸入');
+                return inputOnlyNum(minNum, maxNum);
+            } else {
+                // 轉換成數值後傳回
+                return Number(input);
+            }
+
+        }
+
+        // bingoGame有五個參數:
+        // 分別是bingoNum(正確解答)、inputNum(使用者輸入的數字)、
+        // minNum和maxNum(分別代表最大與最小作答範圍，預設為0-99)
+        // count代表現在猜到第幾次
+
+        // bingoGame會先判斷inputNum是否超出了有效作答範圍，若是，則重新進入函式(作答範圍不變)
+        // 接著判斷inputNum是大於或小於bingoNum，若是，重新進入函式(依情況修改作答範圍)
+        // 若以上皆非就是猜中的情況，結束函式
+
+        function bingoGame(bingoNum, inputNum, minNum = 0, maxNum = 99, count = 1) {
+            // for test
+            // console.log(minNum + '||' + maxNum);
+            if (inputNum == null) {
+                // 使用者按下取消的情況，會終止遊戲
+                alert('您按了取消，即將終止遊戲');
+                return;
+            }
+            // 判斷是否在作答範圍
+            if (inputNum < minNum || inputNum > maxNum) {
+                // 超出作答範圍
+                alert(`作答超出有效範圍，請輸入${minNum}-${maxNum}之間的數字`);
+                // 條件不變的情況下重來
+                return bingoGame(bingoNum, inputOnlyNum(minNum, maxNum), minNum, maxNum, count);
+            }
+
+            // 判斷inputNum大於、小於或等於bingoNum
+            if (inputNum > bingoNum) {
+                // 大於(太大)的情況
+                console.log(`第${count}次：${inputNum} => 太大了（提示：${minNum}-${maxNum}）`);
+                // 將最大值改成作答值且count++然後重新進入函式
+                return bingoGame(bingoNum, inputOnlyNum(minNum, inputNum), minNum, inputNum, ++count);
+            } else if (inputNum < bingoNum) {
+                // 小於(太小)的情況
+                console.log(`第${count}次：${inputNum} => 太小了（提示：${minNum}-${maxNum}）`);
+                // 將最小值改成作答值且count++然後重新進入函式
+                return bingoGame(bingoNum, inputOnlyNum(inputNum, maxNum), inputNum, maxNum, ++count);
+            } else if (inputNum == bingoNum) {
+                // 答對的情況
+                console.log(`第${count}次：${inputNum} => 猜對了`);
+                return;
+            } else {
+                console.log('err! 請檢查bingoGame裡面判斷作答正確與否的部分。我們不應該在這裡...');
+            }
+        }
+
+
+        // --- 實作區 ---
+        // console.log(Math.floor(Math.random()*100)); // 回傳 0 ~ 99
+        // console.log(Math.floor(Math.random()*100)+1); // 回傳 1 ~ 100
+        // 產生亂數給變數bingoNum
+        let bingoNum = Math.floor(Math.random() * 100);
+
+        // for test
+        console.log(`正確答案:${bingoNum}(測試用)`);
+        // console.log(inputOnlyNum(0, 99));
+        // bingoGame();
+
+        // setTimeout(() => {
+        //     bingoGame(bingoNum, inputOnlyNum(0, 99), 0, 99, 1);
+        // }, 10);
+
+        bingoGame(bingoNum, inputOnlyNum(0, 99), 0, 99, 1);
+
+
+    </script>
+</body>
+
+</html>
