@@ -23,7 +23,8 @@
         // --- 函式區 ---
 
         // inputOnlyNum()會擋掉非數值、沒輸入就按確認的情況，並且請使用者重新輸入(重新進入函式)
-        // 傳回值會先轉成數值，按取消則傳回null
+        // 按取消則傳回null
+        // 以上皆非時，傳回使用者的輸入(會先轉成數值)
         function inputOnlyNum(minNum, maxNum) {
 
             // let input = '';
@@ -75,14 +76,16 @@
             // 判斷inputNum大於、小於或等於bingoNum
             if (inputNum > bingoNum) {
                 // 大於(太大)的情況
+                maxNum = inputNum;
                 console.log(`第${count}次：${inputNum} => 太大了（提示：${minNum}-${maxNum}）`);
                 // 將最大值改成作答值且count++然後重新進入函式
-                return bingoGame(bingoNum, inputOnlyNum(minNum, inputNum), minNum, inputNum, ++count);
+                return bingoGame(bingoNum, inputOnlyNum(minNum, maxNum), minNum, maxNum, ++count);
             } else if (inputNum < bingoNum) {
                 // 小於(太小)的情況
+                minNum = inputNum;
                 console.log(`第${count}次：${inputNum} => 太小了（提示：${minNum}-${maxNum}）`);
                 // 將最小值改成作答值且count++然後重新進入函式
-                return bingoGame(bingoNum, inputOnlyNum(inputNum, maxNum), inputNum, maxNum, ++count);
+                return bingoGame(bingoNum, inputOnlyNum(minNum, maxNum), minNum, maxNum, ++count);
             } else if (inputNum == bingoNum) {
                 // 答對的情況
                 console.log(`第${count}次：${inputNum} => 猜對了`);
@@ -106,7 +109,7 @@
 
         // setTimeout(() => {
         //     bingoGame(bingoNum, inputOnlyNum(0, 99), 0, 99, 1);
-        // }, 10);
+        // }, 1000);
 
         bingoGame(bingoNum, inputOnlyNum(0, 99), 0, 99, 1);
 
