@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 請輸入成績N次，直到輸入{-1}或{取消}就結束
+        /*
+            第1次分數:90
+            第2次分數:50
+            第3次分數:60
+            第4次分數:-1
+            --------------
+            及格人數:2人
+            不及格人數:1人
+            總分:200分
+            總平均:66.67分
+        */
+
+        // 這個func會在使用者輸入錯誤資訊時跳出警告並讓其重新輸入
+        function inputFunc() {
+            let input = prompt('請輸入分數，輸入-1或按下取消就結束輸入');
+            if (isNaN(input) || input == '') {
+                // 輸入非數值或直接按確認則重來
+                alert('非數值或直接按下了確認，請重新輸入')
+                return inputFunc();
+            } else if (Number(input) > 100 || Number(input) < -1) {
+                // 分數超出有效範圍(0-100)
+                alert('分數超出有效範圍(0-100)，請重新輸入');
+                return inputFunc();
+            } else {
+                return input;
+            }
+        }
+
+        // 這個func會印出第x次分數:xx，同時統計及格人數、總人數和總分
+        function scorePrint() {
+            let input = inputFunc();
+            if (input === '-1') {
+                document.write(`第${totCount + 1}次分數:${Number(input)}<br>`);
+                return;
+            } else if (input == null) {
+                document.write(`第${totCount + 1}次分數:取消<br>`);
+                return;
+            }
+
+            input = Number(input); // 轉換成數值
+            if (input >= 60) {
+                // 及格的情況
+                passCount++;
+                totCount++;
+                totScore += input;
+                document.write(`第${totCount}次分數:${input}<br>`);
+                return scorePrint();
+            } else if (input < 60) {
+                // 不及格的情況
+                totCount++;
+                totScore += input;
+                document.write(`第${totCount}次分數:${input}<br>`);
+                return scorePrint();
+            }
+        }
+        let passCount = 0;
+        let totCount = 0;
+        let totScore = 0;
+        scorePrint();
+        document.write('--------------<br>');
+        document.write(`及格人數:${passCount}人<br>不及格人數:${totCount - passCount}人<br>`);
+        // 避免0/0 => NaN的情況，將總平均拉出來做
+        let averageScore = 0; // 總平均
+        if (totScore == 0) {
+            averageScore = 0;
+        } else {
+            averageScore = (totScore / totCount).toFixed(2);
+        }
+        document.write(`總分:${totScore}分<br>總平均:${averageScore}分`);
+    </script>
+</body>
+
+</html>

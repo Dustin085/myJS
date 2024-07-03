@@ -40,22 +40,24 @@
         // 使用輸入視窗產生任意兩數與運算式符號
         let inputX = prompt('即將執行四則運算，請輸入第一個數字');
         let inputY = prompt('第二個數字');
+        let inputSymbol = prompt('運算式符號(+ - * /)');
 
         // 處理排除下列狀況
         // 1.非數字
         // 2.多餘空白
         // 3.取消狀況
-        if (inputX == null || inputY == null) {
+        if (inputX == null || inputY == null || inputSymbol == null) {
             // 取消
             document.write('您按了取消<br>');
-        } else if (isNaN(Number(inputX)) || isNaN(Number(inputY))) {
+        } else if (isNaN(inputX) || isNaN(inputY)) {
+            // isNaN => is Not a Number
             // 非數字
             document.write('您輸入了非數字<br>');
         } else {
-            // 清除空白並轉數值
+            // 清除空白 => String.trim() => 字與字之間的空白不會被刪除
+            // 轉數值 => Number(string)
             inputX = Number(inputX.trim());
             inputY = Number(inputY.trim());
-            let inputSymbol = prompt('運算式符號(+ - * /)');
             // 最後再呼叫
             calc(inputX, inputY, inputSymbol);
         }

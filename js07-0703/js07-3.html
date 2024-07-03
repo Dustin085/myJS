@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 有參數，有傳回值
+        function chkScore(intScore) {
+            if (intScore >= 60) {
+                return '及格';
+                // 結束函式，並且把結果傳出去
+            } else {
+                return '不及格';
+            }
+        }
+
+        // 分數1
+        let score = Number(prompt('請輸入分數'));
+        let result = chkScore(score);
+        document.write('分數1:' + result+'<br>');
+
+        // 分數2
+        score = Number(prompt('請輸入分數'));
+        result = chkScore(score);
+        document.write('分數2:' + result+'<br>');
+
+        // 分數3
+        score = Number(prompt('請輸入分數'));
+        result = chkScore(score);
+        document.write('分數3:' + result+'<br>');
+    </script>
+</body>
+
+</html>
