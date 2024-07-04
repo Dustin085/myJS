@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 作業3：猜數字，直到猜對才結束
+
+        // --- 題目區 ---
+
+        // 用亂數產生一個值：60
+        // 輸入資訊顯示console.log()
+        // 第1次：50 => 太小了（提示：50-100）
+        // 第2次：90 => 太大了（提示：50-90）
+        // 第3次：80 => 太大了（提示：50-80）
+        // 第4次：55 => 太小了（提示：55-80）
+        // 第5次：60 => 猜對了
+
+        let bingoNum = Math.floor(Math.random() * 100);
+        console.log(`正確答案:${bingoNum}(測試用)`);
+
+        let minNum = 0;
+        let maxNum = 99;
+        let count = 1;
+
+        while (true) {
+            let input = prompt(`猜數字遊戲！請輸入${minNum}-${maxNum}之間的數字`);
+
+            if (input == null) {
+                break;
+            } else if (input == '' || isNaN(input)) {
+                continue;
+            }
+
+            input = Number(input.trim());
+            if (input < minNum || input > maxNum) {
+                alert(`輸入數字不在作答範圍(${minNum}-${maxNum})`);
+                continue;
+            } else if (input > bingoNum) {
+                maxNum = input;
+                console.log(`第${count}次：${input} => 太大了（提示：${minNum}-${maxNum}`);
+                count++;
+                continue;
+            } else if (input < bingoNum) {
+                minNum = input;
+                console.log(`第${count}次：${input} => 太小了（提示：${minNum}-${maxNum}`);
+                count++;
+                continue;
+            } else if (input == bingoNum) {
+                console.log(`第${count}次：${input} => 猜對了`);
+                break;
+            }
+        }
+    </script>
+</body>
+
+</html>
