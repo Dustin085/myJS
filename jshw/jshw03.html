@@ -66,7 +66,7 @@
                 return;
             }
             // 判斷是否在作答範圍
-            if (inputNum < minNum || inputNum > maxNum) {
+            if (inputNum <= minNum || inputNum >= maxNum) {
                 // 超出作答範圍
                 alert(`作答超出有效範圍，請輸入${minNum}-${maxNum}之間的數字`);
                 // 條件不變的情況下重來
