@@ -43,12 +43,12 @@
                 continue;
             } else if (input > bingoNum) {
                 maxNum = input;
-                console.log(`第${count}次：${input} => 太大了（提示：${minNum}-${maxNum}`);
+                console.log(`第${count}次：${input} => 太大了（提示：${minNum}-${maxNum}）`);
                 count++;
                 continue;
             } else if (input < bingoNum) {
                 minNum = input;
-                console.log(`第${count}次：${input} => 太小了（提示：${minNum}-${maxNum}`);
+                console.log(`第${count}次：${input} => 太小了（提示：${minNum}-${maxNum}）`);
                 count++;
                 continue;
             } else if (input == bingoNum) {
