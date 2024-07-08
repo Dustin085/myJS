@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 參數的預設值是undefined(空值)
+        // 所以設定函式時，給予預設參數(避免空值發生)
+        function tot1(n1 = 0, n2 = 0) {
+            console.log(`tot1 : ${n1} + ${n2} = ${n1 + n2}`);
+        }
+        // tot1();
+        // tot1(5);
+        // tot1(0, 3);
+        // tot1(5, 3, 2);
+
+        // 具名參數(不按照參數的順序給值)
+        // 使用物件型別{}傳送資料給指定的參數
+        // 所以接受資料的函式參數，也要使用物件型別{}接收
+        function tot2({ n1 = 0, n2 = 0 }) {
+            console.log(`tot2 : ${n1} + ${n2} = ${n1 + n2}`);
+        }
+        tot2({ n2: 3, n1: 10 });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="tot3(5, 3);">兩數相加1</button>
+    <button onclick="console.log(tot2(5, 3));">兩數相加2</button>
+    <script>
+        // 兩數相加
+        // 傳統寫法
+        function tot1(n1, n2) {
+            return n1 + n2;
+        }
+        console.log('tot1 => ' + tot1(5, 3));
+        // tot1 = function (n1, n2) {
+        //     return n1 * n2;
+        // }
+        // console.log(tot1(5, 3));
+
+        // 匿名函式
+        let tot2 = function (n1, n2) {
+            return n1 + n2;
+        }
+        console.log('tot2 => ' + tot2(5, 3));
+
+        let tot3 = function (n1, n2) {
+            console.log(n1 + n2);
+        }
+
+        // 箭頭函式(參數寫在等號與箭頭之間)
+        // let name = (x, y) => {}
+        let tot4 = (n1, n2) => {
+            return n1 + n2;
+        }
+        console.log('tot4 => ' + tot4(5, 3));
+
+        // 只要是函式，無論是否有參數，小括號()都不能省略
+        let sayHi = () => {
+            document.write('Hi');
+        }
+        sayHi();
+    </script>
+</body>
+
+</html>

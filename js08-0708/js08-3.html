@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 陣列 Array
+        // 一維陣列 => 熟悉度100%
+        // 二維陣列 => 熟悉度50%
+        // 多維陣列 => 知道即可
+        // ----
+        // 每個陣列中的值都有編號(索引值 index)，預設從編號0開始
+        let arr1 = [50, 90, 100, 30, 60];
+        // 陣列長度 : 陣列名稱.length
+        console.log(`arr1陣列長度 : ${arr1.length}`);
+        // 取出陣列值 : 陣列名稱[索引值]
+        console.log(`arr1陣列編號2的值 : ${arr1[2]}`);
+        // 更改陣列值 : 
+        arr1[2] = 99;
+        console.log(`arr1陣列編號2更改後的值 : ${arr1[2]}`);
+
+        // 請使用迴圈，顯示arr1所有編號值
+        tot = 0;
+        for (let i = 0; i < arr1.length; i++) {
+            console.log(`arr1[${i}] = ${arr1[i]}`);
+        }
+
+
+        // 找出最大值、最小值
+        let max = arr1[0];
+        let min = arr1[0];
+        for (let i = 1; i < arr1.length; i++) {
+            if (arr1[i] > max) {
+                // 目前陣列值>最大值時
+                // 最大值=目前值
+                max = arr1[i];
+            } else if (arr1[i] < min) {
+                // 目前陣列值>最小值時
+                // 最小值=目前值
+                min = arr1[i];
+            }
+        }
+        console.log(`最大值為:${max}`);
+        console.log(`最小值為:${min}`);
+
+
+
+
+        // 遞增排序自己排
+        // 請遞增排序陣列值，並顯示出來
+        // 提示 : 要有調換過程
+        for (let i = 0; i < (arr1.length - 1); i++) {
+            for (let j = 0; j < ((arr1.length - i) - 1); j++) {
+                console.log(`i=${i}, j=${j}`);
+                if (arr1[j] > arr1[j + 1]) {
+                    let temp = arr1[j + 1];
+                    arr1[j + 1] = arr1[j];
+                    arr1[j] = temp;
+                }
+            }
+        }
+
+        arr1.forEach((ele, i) => {
+            console.log(`arr1[${i}] : ${ele}`);
+        });
+
+
+
+        // 遞增排序用sort()
+        // arr1.sort();
+        // console.log('遞增排序後');
+        // for (let i = 0; i < arr1.length; i++) {
+        //     console.log(`arr1[${i}] = ${arr1[i]}`);
+        // }
+
+        // forEach練習
+        // arr1.forEach((ele, i) => {
+        //     console.log(`arr1[${i}] = ${ele}`);
+        // });
+    </script>
+</body>
+
+</html>
