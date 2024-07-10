@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 建立陣列方法1
+        let arr1 = [1, 2, 3, 4, 5];
+        console.log(arr1[5]); // 超過index範圍者會回傳undefined
+        console.log(`arr1=>${arr1}`);
+        // 建立陣列方法2：先建立陣列物件，再給值
+        let arr2 = new Array();
+        console.log(`arr2=>${arr2}`);
+        console.log(`arr2.length=>${arr2.length}`);
+        // 給值
+        arr2[0] = 'a';
+        arr2[1] = 100;
+        console.log(`arr2=>${arr2}`);
+        console.log(`arr2.length=>${arr2.length}`);
+        // 建立陣列方法3：建立陣列物件，同時給值
+        let arr3 = new Array(99, 80, 'abc', true, null, { x: 1, y: 3 });
+        console.log(`arr3=>${arr3}`);
+        console.log(`arr3.length=>${arr3.length}`);
+
+        // 合法的陣列宣告
+        let arr4 = [];  // 空陣列
+        let arr5 = [1, 2, 3];
+        let arr6 = ['a', 'b', 'c'];
+        let arr7 = [1, '2', true, [], { book: 'javascript' }];
+        // 物件
+        let obj1 = {
+            x: 5,
+            y: '3'
+        }
+
+        // 陣列型別 => typeof(陣列名稱)
+        console.log(typeof (123));
+        console.log(typeof ('123'));
+        console.log(typeof (arr5));
+        console.log(typeof (obj1));
+        console.log(typeof (arr6[1]));
+    </script>
+</body>
+
+</html>

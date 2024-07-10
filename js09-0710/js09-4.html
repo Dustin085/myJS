@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 陣列的使用時機
+        // 建立每個學生的座號
+        // 使用變數
+        // let sNoArr=[1,2,3...,30];
+        // 使用變數30個
+        // let sNo1 = 1;
+        // let sNo2 = 2;
+        // ....
+        // let sNo30 = 30;
+
+        // 陣列中找出100以上 => filter
+        let arr1 = [1, 3, 7, 100, 234];
+        // for
+        console.log('--- for ---');
+        for (let i = 0; i < arr1.length; i++) {
+            if (arr1[i] >= 100) {
+                console.log(arr1[i]);
+            }
+        }
+        // while 先檢查再執行
+        console.log('--- while ---');
+        let count = 0;
+        while (count < arr1.length) {
+            if (arr1[count] >= 100) {
+                console.log(arr1[count]);
+            }
+            count++;
+        }
+        // do-while 先執行再檢查
+        console.log('--- do-while ---');
+        count = 0;
+        do {
+            if (arr1[count] >= 100) {
+                console.log(arr1[count]);
+            }
+            count++;
+        } while (count < arr1.length);
+        // filter()
+        console.log('--- filter() ---');
+        console.log(arr1.filter((n) => {
+            return n >= 100;
+        }));
+        console.log('--- filter()超簡化 ---');
+        console.log(arr1.filter((n) => n >= 100));
+        /*
+        在filter()中的callbackfn若回傳turn，則將此時的ArrayData放入結果中
+        反之不放入，最終filter()會將處理完的結果以Array的形式回傳
+        */
+    </script>
+</body>
+
+</html>

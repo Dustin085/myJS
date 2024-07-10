@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr1 = [100, 30, 99, 10, 3];
+        console.log('排序前:' + arr1);
+        // 遞增排序
+        // arr1.sort();
+        // console.log('排序後:' + arr1);  // 排序後:10,100,3,30,99
+
+        // arr1.sort((a, b) => {
+        //     return a - b; // 遞增
+        // });
+        // console.log('遞增排序後:' + arr1);
+        // arr1.reverse(); // 反轉
+        // console.log('遞減排序後:' + arr1);
+
+        arr1.sort((a, b) => {
+            return b - a; // 遞減
+        });
+        console.log('遞減排序後:' + arr1);
+        arr1.reverse();
+        console.log('遞增排序後:' + arr1);
+
+        arr1.sort(function (a, b) {
+            return b - a;
+        })
+        console.log(arr1);
+
+        arr2 = [3, 55, 66, 13, 25];
+        arr2.sort((a, b) => {
+            if (a < b) {
+                return -1;
+            }
+        });
+        console.log(arr2);
+    </script>
+</body>
+
+</html>

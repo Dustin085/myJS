@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 只顯示奇數
+        // 方法一
+        // let arr1 = [1, 3, 7, 100, 234];
+        // for (let i = 0; i < arr1.length; i++) {
+        //     if (arr1[i] % 2 == 1) {
+        //         console.log(arr1[i]);
+        //     }
+        // }
+        // console.log(arr1);
+
+        // 陣列中只保留奇數 => filter
+        // 方法二
+        let arr2 = [1, 3, 7, 100, 234];
+        console.log(arr2);
+        // let odds = arr2.filter((n) => {
+            // 檢查是否為奇數
+            // if (n % 2 == 1) {
+            //     return true;
+            // }
+            // return false;
+
+            // 簡化寫法
+        //     return n % 2 == 1;  // n=1 => 1%2==1 => true
+        // });
+
+        // 簡化寫法
+        // let odds = arr2.filter((n) => {
+        //     return n % 2 == 1;  // n=1 => 1%2==1 => true
+        // });
+
+        // 再簡化
+        let odds = arr2.filter((n) => n % 2 == 1);
+        
+        console.log('篩選後的陣列奇數內容:' + odds);
+        console.log('篩選後的原陣列內容:' + arr2);
+
+        // 模擬filter內部的寫法(問過老師了 => 正確的寫法)
+        // function filter(yourfunc(n)){
+        //     let n = 陣列中的值
+        //     let result =[];
+        //     if(yourfunc(n)){
+        //         把n放進result
+        //     }else{
+        //         不把n放進result
+        //     }
+        //     return result;
+        // }
+
+        function myfunc(...[a, b, c]) {
+
+        }
+    </script>
+</body>
+
+</html>
