@@ -11,8 +11,7 @@
     <script>
         // 陣列 Array
         // 一維陣列 => 熟悉度100%
-        // 二維陣列 => 熟悉度50%
-        // 多維陣列 => 知道即可
+        // 多維陣列中，二維陣列算是常見 => 熟悉度50%
         // ----
         // 每個陣列中的值都有編號(索引值 index)，預設從編號0開始
         let arr1 = [50, 90, 100, 30, 60];
@@ -29,7 +28,7 @@
         for (let i = 0; i < arr1.length; i++) {
             console.log(`arr1[${i}] = ${arr1[i]}`);
         }
-
+        console.log('-----');
 
         // 找出最大值、最小值
         let max = arr1[0];
@@ -56,7 +55,7 @@
         // 提示 : 要有調換過程
         for (let i = 0; i < (arr1.length - 1); i++) {
             for (let j = 0; j < ((arr1.length - i) - 1); j++) {
-                console.log(`i=${i}, j=${j}`);
+                // console.log(`i=${i}, j=${j}`);
                 if (arr1[j] > arr1[j + 1]) {
                     let temp = arr1[j + 1];
                     arr1[j + 1] = arr1[j];
