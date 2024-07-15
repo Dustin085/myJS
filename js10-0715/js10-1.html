@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        // 取亂數 => 0-1之間
+        let r1 = Math.random();
+        console.log(r1);
+        // 取小數兩位(使用取小數方法) => toFixed()
+        // Number() => 會保存小數點資料
+        console.log(Number(r1.toFixed(2)));
+        // parseInt() => 不會保存小數點資料
+        console.log(parseInt(r1.toFixed(2)));
+
+        // 取小數兩位(沒有使用取小數方法)
+        // 1. 先乘以100
+        console.log(r1 * 100);
+        // 2. 去除小數
+        console.log(Math.floor(r1 * 100));
+        // 3. 除以100
+        console.log((Math.floor(r1 * 100)) / 100);
+
+        function dotDigitTo(num, digit) {
+            return Math.floor((num * (10 ** digit))) / (10 ** digit);
+        }
+        console.log(dotDigitTo(2.5465123, 2));
+        */
+
+        // 找出亂數1-5任意值
+        // let r2 = Math.random();
+        // console.log(r2);
+        // console.log(r2 * 5);
+        // console.log((r2 * 5) + 1);
+        // console.log('亂數值:' + (Math.floor(r2 * 5) + 1));
+        let r2 = Math.floor(Math.random() * 5) + 1;
+        console.log('亂數值:' + r2);
+
+        // 宣告一個陣列
+        let arr1 = [1, 100, 50, 3, 5];
+        console.log('原陣列: ' + arr1);
+        // 尋找陣列中是否存在(擇其一)
+        // 方法一: indexOf(item)
+        // 存在 => return index
+        // 不存在 => return -1
+        // let result = arr1.indexOf(Math.floor(r2 * 5) + 1);
+        let result = arr1.indexOf(r2);
+        console.log('陣列中尋找的結果indexOf: ' + result);
+        // 陣列中若沒有找到亂數值，加入陣列push()
+        if (result == -1) {
+            // arr1.push(Math.floor(r2 * 5) + 1);
+            arr1.push(r2);
+            console.log('新陣列: ' + arr1);
+        }
+
+        // 方法二: includes(item)
+        // 存在 => true
+        // 不存在 => false
+        // let result2 = arr1.includes(Math.floor(r2 * 5) + 1);
+        let result2 = arr1.includes(r2);
+        console.log('陣列中尋找的結果includes: ' + result2);
+        if (!result2) {
+            // arr1.push(Math.floor(r2 * 5) + 1);
+            arr1.push(r2);
+            console.log('新陣列: ' + arr1);
+        }
+
+        // 亂數產生大樂透號碼(1-49)，五組號碼，不重複，加上一個可重複的特別號
+
+        // 先做出大樂透正解
+        let bigLotteryNums = [];
+        while (bigLotteryNums.length < 6) {
+            let bingoNum = Math.floor(Math.random() * 49) + 1;
+            if (!bigLotteryNums.includes(bingoNum)) {
+                bigLotteryNums.push(bingoNum);
+            }
+        }
+        bigLotteryNums = bigLotteryNums.sort((a, b) => {
+            return a - b;
+        });
+        // 加上特別號
+        bigLotteryNums.push(Math.floor(Math.random() * 49) + 1);
+        
+        console.log(bigLotteryNums);
+
+
+        // 模擬電腦選號
+        function creatBigLotNums() {
+            let bigLotteryNums = [];
+            while (bigLotteryNums.length < 6) {
+                let bingoNum = Math.floor(Math.random() * 49) + 1;
+                if (!bigLotteryNums.includes(bingoNum)) {
+                    bigLotteryNums.push(bingoNum);
+                }
+            }
+            bigLotteryNums = bigLotteryNums.sort((a, b) => {
+                return a - b;
+            });
+            return bigLotteryNums;
+        }
+
+        console.log(creatBigLotNums());
+
+        console.log('--- 遊戲開始 ---');
+        // 使用電腦選號玩大樂透
+        // bigLotteryNums = creatBigLotNums();
+        function playBigLot() {
+            // count => 特別號以外中獎碼數
+            let count = 0;
+            // 建立一個電腦選號
+            let myLotNums = creatBigLotNums();
+            // 是否中了特別號
+            let isGetSpNum = false;
+
+            // test
+            // bigLotteryNums = [1, 2, 3, 4, 5, 6, 6];
+            // myLotNums = [1, 6, 46, 48, 47, 49];
+
+            // console.log(`我的投注號碼: ${myLotNums}`);
+            // console.log(`本期中獎號碼: ${bigLotteryNums}`);
+            // 判斷是否中了特別號
+            isGetSpNum = myLotNums.includes(bigLotteryNums[6]);
+            // 將特別號以外的號碼做對獎
+            for (let i = 0; i < (bigLotteryNums.length - 1); i++) {
+                if (myLotNums.includes(bigLotteryNums[i])) {
+                    count++;
+                }
+            }
+
+            // test
+            // if (isGetSpNum) {
+            //     console.log('中了特別號');
+            // }
+            // console.log(`中了 ${count} 碼(不算特別號)`);
+
+            // 檢查我中了甚麼獎
+            switch (count) {
+                case 0:
+                    console.log('一碼都沒中');
+                    break;
+                case 1:
+                    console.log('中一碼');
+                    break;
+                case 2:
+                    if (isGetSpNum) {
+                        console.log('柒獎');
+                        return 7;
+                    } else {
+                        console.log('中兩碼');
+                    }
+                    break;
+                case 3:
+                    if (isGetSpNum) {
+                        console.log('陸獎');
+                        return 6;
+                    } else {
+                        console.log('普獎');
+                        return 8;
+                    }
+                    break;
+                case 4:
+                    if (isGetSpNum) {
+                        console.log('肆獎');
+                        return 4;
+                    } else {
+                        console.log('伍獎');
+                        return 5;
+                    }
+                    break;
+                case 5:
+                    if (isGetSpNum) {
+                        console.log('貳獎');
+                        return 2;
+                    } else {
+                        console.log('參獎');
+                        return 3;
+                    }
+                    break;
+                case 6:
+                    console.log('中頭獎！！');
+                    return 1;
+                    break;
+            }
+        }
+        playBigLot();
+
+        // 玩大樂透直到對中某獎，測試自己的運氣
+        // whatPrz填入想中的獎項(1-8)
+        // 為避免loop過多次，獎項請填5-8之間
+        function playBigLotUntilGetPrize(whatPrz) {
+            let count = 0;
+            if (whatPrz < 1 || whatPrz > 8) {
+                console.log('獎項錯誤');
+                return -1
+            }
+            while (true) {
+                if (playBigLot() == whatPrz) {
+                    console.log(`您花了${count}次才對中${whatPrz}獎`);
+                    return count;
+                }
+                count++;
+            }
+        }
+        // !!!!!
+        // 為避免loop過多次，獎項請填5-8之間
+        // !!!!!
+        playBigLotUntilGetPrize(5);
+    </script>
+</body>
+
+</html>
