@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亂數產生大樂透號碼-JS隨堂測驗-0715</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #biglot {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-przslect {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #biglot>* {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="biglot">
+        <h1>大樂透遊戲-電腦選號直到中?獎</h1>
+        <h2>請千萬不要選獎項2和1，獎項3和4也要小心</h2>
+        <div class="container-przslect">
+            <h3>選擇您想中的獎</h3>
+            <select name="prizeSelect" id="prizeSelect">
+                <option value="8">8</option>
+                <option value="7">7</option>
+                <option value="6">6</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+            </select>
+        </div>
+        <h2 id="game-result">第?次，中了?獎，選號: ?</h2>
+        <button id="btn__begingame">開始遊戲</button>
+    </section>
+
+
+    <script>
+        // 亂數產生大樂透號碼(1-49)，五組號碼，不重複，加上一個可重複的特別號
+
+        // BigLotteryGame class
+        class BigLotteryGame {
+            constructor() {
+                // 要記得加上this.來指定此物件(後面的函式一樣需要)
+                this.bigLotteryNums = this.creatBigLotNums(true);
+                this.mybigLotteryNums = [];
+                this.totCount = 0;
+                this.myPrz = 0;
+            }
+
+            // 選號fn，需要特別碼的話參數填上true
+            creatBigLotNums(needSpNum = false) {
+                let bigLotteryNums = [];
+                // 裝六碼
+                while (bigLotteryNums.length < 6) {
+                    let bingoNum = Math.floor(Math.random() * 49) + 1;
+                    if (!bigLotteryNums.includes(bingoNum)) {
+                        bigLotteryNums.push(bingoNum);
+                    }
+                }
+                // 排序
+                bigLotteryNums = bigLotteryNums.sort((a, b) => {
+                    return a - b;
+                });
+                // 加上特別號
+                if (needSpNum) {
+                    bigLotteryNums.push(Math.floor(Math.random() * 49) + 1);
+                }
+                return bigLotteryNums;
+            }
+
+            // 選號後對獎
+            playBigLot() {
+                // count => 特別號以外中獎碼數
+                let count = 0;
+                // 建立一個電腦選號
+                this.mybigLotteryNums = this.creatBigLotNums(false);
+                // 是否中了特別號
+                let isGetSpNum = false;
+
+                // 判斷是否中了特別號(特別號一定是第七碼)
+                isGetSpNum = this.mybigLotteryNums.includes(this.bigLotteryNums[6]);
+                // 將特別號以外的號碼做對獎
+                for (let i = 0; i < (this.bigLotteryNums.length - 1); i++) {
+                    if (this.mybigLotteryNums.includes(this.bigLotteryNums[i])) {
+                        count++;
+                    }
+                }
+
+                switch (count) {
+                    case 0:
+                        // console.log('一碼都沒中');
+                        break;
+                    case 1:
+                        // console.log('中一碼');
+                        break;
+                    case 2:
+                        if (isGetSpNum) {
+                            // console.log('柒獎');
+                            return 7;
+                        } else {
+                            // console.log('中兩碼');
+                        }
+                        break;
+                    case 3:
+                        if (isGetSpNum) {
+                            // console.log('陸獎');
+                            return 6;
+                        } else {
+                            // console.log('普獎');
+                            return 8;
+                        }
+                        break;
+                    case 4:
+                        if (isGetSpNum) {
+                            // console.log('肆獎');
+                            return 4;
+                        } else {
+                            // console.log('伍獎');
+                            return 5;
+                        }
+                        break;
+                    case 5:
+                        if (isGetSpNum) {
+                            // console.log('貳獎');
+                            return 2;
+                        } else {
+                            // console.log('參獎');
+                            return 3;
+                        }
+                        break;
+                    case 6:
+                        // console.log('中頭獎！！');
+                        return 1;
+                        break;
+                }
+            }
+
+            // 玩大樂透直到對中某獎，測試自己的運氣
+            // whatPrz填入想中的獎項(1-8)
+            // 為避免loop過多次，獎項請填5-8之間
+            playBigLotUntilGetPrize(whatPrz) {
+                this.myPrz = whatPrz;
+                let count = 1;
+                while (true) {
+                    if (this.playBigLot() == whatPrz) {
+                        console.log(`您花了${count}次, 才對中${whatPrz}獎, 開獎選號是: ${this.bigLotteryNums}, 我的選號是: ${this.mybigLotteryNums}`);
+                        this.totCount = count;
+                        return count;
+                    }
+                    count++;
+                }
+            }
+
+
+        }
+
+        // 顛倒一到八
+        function reverseEighttoOne(num) {
+            let arr1 = [1, 2, 3, 4, 5, 6, 7, 8];
+            let arr2 = [8, 7, 6, 5, 4, 3, 2, 1];
+            return arr2[arr1.indexOf(num)];
+        }
+
+        function update() {
+            let gameResultEle = document.getElementById('game-result');
+            gameResultEle.innerHTML = `第${myBLgame.totCount}次，中了${myBLgame.myPrz}獎，開獎選號是: ${myBLgame.bigLotteryNums}，我的選號是: ${myBLgame.mybigLotteryNums}`
+        }
+
+        let myBLgame = new BigLotteryGame();
+        let bigLotGamebtnEle = document.getElementById('btn__begingame');
+        let prizeSelectEle = document.querySelector('#prizeSelect');
+
+        bigLotGamebtnEle.addEventListener("click", (ev) => {
+            myBLgame.playBigLotUntilGetPrize(reverseEighttoOne(prizeSelectEle.selectedIndex + 1));
+            update();
+        });
+    </script>
+</body>
+
+</html>
