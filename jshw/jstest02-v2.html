@@ -60,6 +60,7 @@
 
         // BigLotteryGame class
         class BigLotteryGame {
+
             constructor() {
                 // 要記得加上this.來指定此物件(後面的函式一樣需要)
                 this.bigLotteryNums = this.creatBigLotNums(true);
@@ -67,6 +68,8 @@
                 this.totCount = 0;
                 this.myPrz = 0;
             }
+
+            static SIXGOTNUM = [0, 1, 2, 3, 4, 5, 6];
 
             // 選號fn，需要特別碼的話參數填上true
             creatBigLotNums(needSpNum = false) {
@@ -108,13 +111,13 @@
                 }
 
                 switch (count) {
-                    case 0:
+                    case BigLotteryGame.SIXGOTNUM[0]:
                         // console.log('一碼都沒中');
                         break;
-                    case 1:
+                    case BigLotteryGame.SIXGOTNUM[1]:
                         // console.log('中一碼');
                         break;
-                    case 2:
+                    case BigLotteryGame.SIXGOTNUM[2]:
                         if (isGetSpNum) {
                             // console.log('柒獎');
                             return 7;
@@ -122,7 +125,7 @@
                             // console.log('中兩碼');
                         }
                         break;
-                    case 3:
+                    case BigLotteryGame.SIXGOTNUM[3]:
                         if (isGetSpNum) {
                             // console.log('陸獎');
                             return 6;
@@ -131,7 +134,7 @@
                             return 8;
                         }
                         break;
-                    case 4:
+                    case BigLotteryGame.SIXGOTNUM[4]:
                         if (isGetSpNum) {
                             // console.log('肆獎');
                             return 4;
@@ -140,7 +143,7 @@
                             return 5;
                         }
                         break;
-                    case 5:
+                    case BigLotteryGame.SIXGOTNUM[5]:
                         if (isGetSpNum) {
                             // console.log('貳獎');
                             return 2;
@@ -149,7 +152,7 @@
                             return 3;
                         }
                         break;
-                    case 6:
+                    case BigLotteryGame.SIXGOTNUM[6]:
                         // console.log('中頭獎！！');
                         return 1;
                         break;
