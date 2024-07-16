@@ -58,15 +58,17 @@
     <script>
         // 亂數產生大樂透號碼(1-49)，五組號碼，不重複，加上一個可重複的特別號
 
-        // BigLotteryGame class
+        // BigLotteryGame class，內含一組開獎選號和我的選號，包含電腦選號功能，還有電選並對獎到中獎功能
         class BigLotteryGame {
-
             constructor() {
                 // 要記得加上this.來指定此物件(後面的函式一樣需要)
                 this.bigLotteryNums = this.creatBigLotNums(true);
+                
                 this.mybigLotteryNums = [];
+                // 總共選號並對獎了幾次才中獎
                 this.totCount = 0;
-                this.myPrz = 0;
+                // 我的目標獎項
+                this.myGoalPrz = 0;
             }
 
             static SIXGOTNUM = [0, 1, 2, 3, 4, 5, 6];
@@ -92,7 +94,7 @@
                 return bigLotteryNums;
             }
 
-            // 選號後對獎
+            // 選號後對獎，return獎項編號(1-8)
             playBigLot() {
                 // count => 特別號以外中獎碼數
                 let count = 0;
@@ -163,14 +165,16 @@
             // whatPrz填入想中的獎項(1-8)
             // 為避免loop過多次，獎項請填5-8之間
             playBigLotUntilGetPrize(whatPrz) {
-                this.myPrz = whatPrz;
+                this.myGoalPrz = whatPrz;
                 let count = 1;
                 while (true) {
                     if (this.playBigLot() == whatPrz) {
+                        // 若此次對獎有達成我的目標獎項
                         console.log(`您花了${count}次, 才對中${whatPrz}獎, 開獎選號是: ${this.bigLotteryNums}, 我的選號是: ${this.mybigLotteryNums}`);
                         this.totCount = count;
                         return count;
                     }
+                    // 沒達成目標
                     count++;
                 }
             }
@@ -185,15 +189,20 @@
             return arr2[arr1.indexOf(num)];
         }
 
+        // 更新中獎顯示文字
         function update() {
             let gameResultEle = document.getElementById('game-result');
-            gameResultEle.innerHTML = `第${myBLgame.totCount}次，中了${myBLgame.myPrz}獎，開獎選號是: ${myBLgame.bigLotteryNums}，我的選號是: ${myBLgame.mybigLotteryNums}`
+            gameResultEle.innerHTML = `第${myBLgame.totCount}次，中了${myBLgame.myGoalPrz}獎，開獎選號是: ${myBLgame.bigLotteryNums}，我的選號是: ${myBLgame.mybigLotteryNums}`
         }
 
+        // 建立實例
         let myBLgame = new BigLotteryGame();
+
+        // 抓html元素
         let bigLotGamebtnEle = document.getElementById('btn__begingame');
         let prizeSelectEle = document.querySelector('#prizeSelect');
 
+        // 加監聽
         bigLotGamebtnEle.addEventListener("click", (ev) => {
             myBLgame.playBigLotUntilGetPrize(reverseEighttoOne(prizeSelectEle.selectedIndex + 1));
             update();

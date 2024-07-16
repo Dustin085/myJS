@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 物件模組化 => 物件樣板 => 字首大寫
+        // 建立物件樣版 => Mobile
+        function Mobile(brand, color, size) {
+            this.brand = brand;
+            this.color = color;
+            this.size = size;
+            this.showMsg = function () {
+                console.log(`品牌：${this.brand}，色彩：${this.color}，尺寸：${this.size}`);
+            }
+        }
+
+        
+        let m1 = new Mobile('iPhone', 'black', '14');
+        console.log(m1.showMsg);
+        console.log(m1.showMsg());
+        m1.showMsg();
+        let m2 = new Mobile('三星', '灰黑', '13');
+        m2.showMsg();
+
+        class Person {
+            constructor(name, age){
+                this.name = name;
+                this.age = age;
+            }
+
+            sayHi() {
+                console.log(`Hi! 我是${this.name}, 今年${this.age}歲`);
+            }
+        }
+
+        let sam = new Person('Sam', 18);
+        sam.sayHi();
+    </script>
+</body>
+
+</html>

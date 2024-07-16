@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #comChooseNum {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #comChooseNum>* {
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="comChooseNum">
+        <h2>電腦選號網頁，祝您中獎</h2>
+        <select name="select__lottery" id="select__lottery">
+            <option value="1">大樂透</option>
+            <option value="2">威力彩</option>
+            <option value="3">今彩539</option>
+        </select>
+        <h3 id="text__lotNum">樂透名: 選號</h3>
+        <button id="btn__start">開始電腦選號</button>
+    </section>
+
+
+    <script>
+        // 大樂透 => 第一區1-49挑6個號碼 + 第二區挑1-49一個號碼
+        // 威力彩 => 第一區1-38挑6個號碼 + 第二區挑1-8一個號碼
+        // 今彩539 => 第一區1-39挑5個號碼
+
+        // 函式區
+        // 取 1-topNum 之間的整數亂數
+        function getRandInt(topNum) {
+            return Math.floor((Math.random() * topNum) + 1);
+        }
+        // console.log(getRandInt(38));
+
+        function creatLotteryNums(whatLottery = 1, isPlayer = true) {
+            // 1.大樂透 2.威力彩 3.今彩539
+            // 最後要送出的陣列
+            let lotteryNums = [];
+            // 樂透第一區有幾個號碼
+            let lengthSecOne = 6;
+            // 樂透第二區有幾個號碼
+            let lengthSecTwo = 1;
+            // 樂透第一區的最大號碼
+            let secOneTopNum = 49;
+            // 樂透第二區的最大號碼
+            let secTwoTopNum = 49;
+            // 是否需要第二區
+            let needSecTwo = true;
+            // 轉換樂透種類跟樂透編號
+            let lotNameToNum = {
+                'bigLot': 1,
+                'powerLot': 2,
+                'daily539Lot': 3
+            }
+
+            // 切換不同彩票種類
+            switch (whatLottery) {
+                case lotNameToNum.bigLot:
+                    // 大樂透
+                    secOneTopNum = 49;
+                    lengthSecOne = 6;
+                    secTwoTopNum = 49;
+                    lengthSecTwo = 1;
+                    needSecTwo = !isPlayer;
+                    break;
+                case lotNameToNum.powerLot:
+                    // 威力彩
+                    secOneTopNum = 38;
+                    lengthSecOne = 6;
+                    secTwoTopNum = 8;
+                    lengthSecTwo = 1;
+                    needSecTwo = true;
+                    break;
+                case lotNameToNum.daily539Lot:
+                    // 今彩539
+                    secOneTopNum = 39;
+                    lengthSecOne = 5;
+                    secTwoTopNum = 0;
+                    lengthSecTwo = 0;
+                    needSecTwo = false;
+                    break;
+                default:
+                    secOneTopNum = 49;
+                    lengthSecOne = 6;
+                    secTwoTopNum = 49;
+                    lengthSecTwo = 1;
+                    needSecTwo = false;
+                    break;
+            }
+
+            // 填入第一區號碼
+            while (lotteryNums.length < lengthSecOne) {
+                let lotNum = getRandInt(secOneTopNum);
+                if (!lotteryNums.includes(lotNum)) {
+                    lotteryNums.push(lotNum);
+                }
+            }
+            lotteryNums.sort((a, b) => {
+                return a - b;
+            });
+            // 填入第二區號碼
+            if (needSecTwo) {
+                while (lotteryNums.length < (lengthSecOne + lengthSecTwo)) {
+                    lotteryNums.push(getRandInt(secTwoTopNum));
+                }
+            }
+
+            return lotteryNums;
+        }
+
+        // 實作區
+        // 跳脫字元符號 => \n =>換行
+        // let lotGameNo = prompt('請輸入樂透號碼代號 =>\n1.大樂透 2.威力彩 3.今彩539');
+        // console.log(creatLotteryNums(Number(lotGameNo)));
+
+        // html元素區
+        let btnStartEle = document.getElementById('btn__start');
+        let lotTextEle = document.getElementById('text__lotNum');
+        let selectLotEle = document.querySelector('#select__lottery');
+
+        btnStartEle.addEventListener("click", (ev) => {
+            // 取出index
+            let selectIndex = selectLotEle.selectedIndex;
+            // 製作電腦選號(不含特別號)
+            let myLotNums = creatLotteryNums(selectIndex + 1, true);
+            // 結果印出
+            lotTextEle.innerHTML = `${selectLotEle[selectIndex].innerHTML}: ${myLotNums}`;
+
+            // test
+            console.log(creatLotteryNums(selectIndex + 1, false));
+        });
+    </script>
+</body>
+
+</html>

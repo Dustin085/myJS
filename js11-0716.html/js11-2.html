@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let userName = '健仔';
+        // let userAge = 7;
+        // function sayHi() {
+        //     console.log(`Hi! 我是${userName}, 今年${userAge}歲`);
+        // }
+        // sayHi();
+
+        // 建立物件方法一：實體化
+        let score = [];
+        // 物件結尾要加分號
+        let user = {
+            // 物件屬性
+            // 屬性名稱: 屬性值
+            name: '健仔',
+            age: '7old',
+
+            // 物件方法
+            // 方法名稱: function(){...}}
+            sayHi: function () {
+                // this. => 目前同一個物件中的屬性，一定要加
+                console.log(`Hi! 我是${this.name}, 今年${this.age}歲`);
+            }
+        };
+
+        // 呼叫物件
+        // 使用成員運算子(" . ")
+        console.log(user.age);
+        user.sayHi();
+
+        // 使用中括號，取得物件屬性
+        console.log(user['name']);
+        console.log(user['sayHi']);
+        arr = [];
+        console.log(arr['filter']);
+
+        // 修改物件中的年齡屬性
+        user.age = 10;
+        console.log(user['age']);
+
+        // 刪除物件中的年齡屬性
+        delete user.age;
+        console.log(user.age);
+
+        // 建立物件方法二：建構子
+        // 1. 使用new建立一個空物件Object
+        let mobile = new Object();
+        // 再建立屬性或方法
+        // 建立品牌屬性
+        mobile.brand = 'iPhone';
+        // 建立顏色屬性
+        mobile.color = 'black';
+        // 建立尺寸屬性
+        mobile.size = '14';
+        // 建立方法
+        mobile.showMsg = function () {
+            // 呼叫物件方法(沒有傳回值)
+            console.log(`品牌：${this.brand}，色彩：${this.color}，尺寸：${this.size}`);
+            // 呼叫物件方法(有傳回值)
+            // return `品牌：${this.brand}，色彩：${this.color}，尺寸：${this.size}`;
+        }
+        // 呼叫物件屬性
+        console.log(mobile.brand);
+        // 呼叫物件方法
+        mobile.showMsg();
+        // 呼叫物件方法(沒有傳回值)
+        console.log(mobile['showMsg']);
+        // 呼叫物件方法(有傳回值)
+        // console.log(mobile.showMsg());
+
+        // 汽車物件
+        let car = {
+            // 品牌
+            // LOGO
+            // 價格
+            // 款式
+            // 色彩 
+        }
+
+        // 筆電物件
+        let notebook = {
+            // 品牌
+            // 色彩
+            // 規格
+            // 價格
+
+        }
+    </script>
+</body>
+
+</html>
