@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 建立物件樣版
+        // 習慣上物件樣版名稱字首為大寫
+        // 1. 建立物件樣版成員
+        function Sdata(sid, sName, htmlScore, cssScore, jsScore) {
+            this.sid = sid;
+            this.sName = sName;
+            this.htmlScore = htmlScore;
+            this.cssScore = cssScore;
+            this.jsScore = jsScore;
+            this.showData = function(){
+                console.log(`${this.sid}號${this.sName}同學, 成績總分為${this.htmlScore + this.cssScore + this.jsScore}分`);
+            }
+        }
+        // 2. 使用物件樣版
+        // 傳值給物件樣版
+        let s1 = new Sdata('s001', '王小明', 100, 100, 100);
+        // 呼叫物件樣版中的方法
+        s1.showData();
+        let s2 = new Sdata('s002', '張大三', 90, 45, 94);
+        let s3 = new Sdata('s003', '李小四', 98, 98, 98);
+
+        // 計算全班各科總分
+        // 宣告陣列
+        let sArr = [s1, s2, s3];
+        let htmlTotScore = 0;
+        let cssTotScore = 0;
+        let jsTotScore = 0;
+
+        // for迴圈
+        sArr.forEach((sObj)=>{
+            htmlTotScore += sObj.htmlScore;
+            cssTotScore += sObj.cssScore;
+            jsTotScore += sObj.jsScore;
+        });
+        console.log(`html總分為${htmlTotScore}, css總分為${cssTotScore}, javascript總分為${jsTotScore}`);
+    </script>
+</body>
+
+</html>
