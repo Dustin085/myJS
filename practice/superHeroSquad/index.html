@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Our superheroes</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <header>
+
+    </header>
+
+    <section>
+
+    </section>
+
+    <script>
+        requestUrl = "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json";
+        let request = new XMLHttpRequest();
+        let headerEle = document.querySelector("header");
+        request.open("GET", requestUrl);
+        request.responseType = "json";
+        request.send();
+        request.onload = (event) => {
+            console.log(request.response);
+            creatHeader(request.response);
+            creatHeroCard(request.response);
+        };
+
+        // 建立header
+        function creatHeader(jsonObj) {
+            myH1 = document.createElement("h1");
+            myH1.textContent = jsonObj["squadName"];
+            headerEle.appendChild(myH1);
+            myPara = document.createElement("p");
+            myPara.textContent = `Hometown: ${jsonObj["homeTown"]} // formed: ${jsonObj["formed"]}`;
+            headerEle.appendChild(myPara);
+        }
+        // 建立hero卡片
+        function creatHeroCard(jsonObj) {
+            let heroes = jsonObj["members"];
+            heroes.forEach((hero, index) => {
+                let heroArticleEle = document.createElement("article");
+                let heroNameEle = document.createElement("h2");
+                let secretIdentEle = document.createElement("p");
+                let ageEle = document.createElement("p");
+                let powerEle = document.createElement("p");
+                // 填入卡片元素內容
+                heroNameEle.textContent = hero["name"];
+                secretIdentEle.textContent = `Secret Identity: ${hero["secretIdentity"]}`;
+                ageEle.textContent = `age: ${hero["age"]}`;
+                powerEle.textContent = `Super Powers:`;
+                heroArticleEle.appendChild(heroNameEle);
+                heroArticleEle.appendChild(secretIdentEle);
+                heroArticleEle.appendChild(ageEle);
+                heroArticleEle.appendChild(powerEle);
+
+                // 超級能力清單
+                powerListEle = document.createElement("ul");
+                hero["powers"].forEach((power, index) => {
+                    let powerItemEle = document.createElement("li");
+                    powerItemEle.textContent = power;
+                    powerListEle.appendChild(powerItemEle);
+                });
+                heroArticleEle.appendChild(powerListEle);
+                // 塞入section
+                document.querySelector("section").appendChild(heroArticleEle);
+            });
+        }
+
+        /*
+        {
+    "squadName": "Super Hero Squad",
+    "homeTown": "Metro City",
+    "formed": 2016,
+    "secretBase": "Super tower",
+    "active": true,
+    "members": [
+        {
+            "name": "Molecule Man",
+            "age": 29,
+            "secretIdentity": "Dan Jukes",
+            "powers": [
+                "Radiation resistance",
+                "Turning tiny",
+                "Radiation blast"
+            ]
+        },
+        {
+            "name": "Madame Uppercut",
+            "age": 39,
+            "secretIdentity": "Jane Wilson",
+            "powers": [
+                "Million tonne punch",
+                "Damage resistance",
+                "Superhuman reflexes"
+            ]
+        },
+        {
+            "name": "Eternal Flame",
+            "age": 1000000,
+            "secretIdentity": "Unknown",
+            "powers": [
+                "Immortality",
+                "Heat Immunity",
+                "Inferno",
+                "Teleportation",
+                "Interdimensional travel"
+            ]
+        }
+    ]
+}
+        */
+    </script>
+</body>
+
+</html>
