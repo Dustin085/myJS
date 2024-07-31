@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 使用陣列傳送option -->
+    <form action="">
+        <label for="city">請選擇縣市</label>
+        <select name="city" id="city">
+            <option value="">請選擇</option>
+            <!-- 自行撰寫局部js -->
+            <script>
+                // 建立一個縣市的陣列
+                let arrCity = ["台北市", "新北市", "桃園市"];
+                arrCity.forEach((city) => {
+                    document.write(`<option value=${city}>${city}</option>`);
+                });
+            </script>
+            <!-- 
+            <option value="台北市">台北市</option>
+            <option value="新北市">新北市</option>
+            <option value="桃園市">桃園市</option>
+            -->
+        </select>
+        <input type="button" value="送出" id="btn">
+    </form>
+
+    <script src="./js14-3.js"></script>
+</body>
+
+</html>

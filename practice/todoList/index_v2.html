@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .todo-list-item.selected {
+            color: red;
+        }
+
+        li,
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section>
+            <div>
+                <input type="text" id="text-input">
+                <button type="button" id="add-btn">add</button>
+            </div>
+            <div class="todo-list-content">
+                <ul id="todo-list">
+                    <li class="todo-list-item">123</li>
+                    <li class="todo-list-item">234</li>
+                    <li class="todo-list-item">345</li>
+                </ul>
+                <div>
+                    <button id="del-btn">del</button>
+                    <button id="clear-btn">clear</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        // 按下add新增li => OK，還可加強功能
+        // li點擊後選取 => OK，單選，被選者變紅色
+        // 選取者刪除 => OK
+        // 清除按鈕 => OK
+
+        // add按鈕監聽
+        let addBtn = document.getElementById("add-btn");
+        let todoList = document.getElementById("todo-list");
+        addBtn.onclick = () => {
+            let newListItem = "";
+            let inputEle = document.getElementById("text-input");
+            if (inputEle.value != "") {
+                newListItem = `<li class="todo-list-item">${inputEle.value}</li>`;
+                todoList.innerHTML += newListItem;
+                // 清空輸入方塊
+                inputEle.value = "";
+                addOnclickToListItem();
+            }
+        };
+
+        // 刪除按鈕
+        let delBtn = document.getElementById("del-btn");
+        delBtn.onclick = () => {
+            // 刪除具有"selected" class的元素
+            let eleToRemove = todoList.getElementsByClassName("selected")[0];
+            // 沒寫判斷的話會嘗試刪除undefined
+            if (eleToRemove) {
+                todoList.getElementsByClassName("selected")[0].remove();
+            }
+            // addOnclickToListItem();
+        };
+
+        // 清除按鈕
+        let clearBtn = document.getElementById("clear-btn");
+        clearBtn.onclick = () => {
+            todoList.innerHTML = "";
+        };
+
+        // 在輸入欄位按enter可以觸發addBtn.click()
+        let inputEle = document.getElementById("text-input");
+        inputEle.onkeydown = (event) => {
+            if (event.key == "Enter") {
+                addBtn.click();
+            }
+        };
+
+        // 初始化listItem的監聽 
+        addOnclickToListItem();
+
+
+        // 加入li選取監聽，單選且可以取消選取
+        function addOnclickToListItem() {
+            let todoListItemArr = Array.from(document.getElementsByClassName("todo-list-item"));
+            todoListItemArr.forEach((item) => {
+                item.onclick = () => {
+                    if (!item.classList.contains("selected")) {
+                        // 如果沒有被選取，清掉所有selected後加上自己的selected
+                        todoListItemArr.forEach((item) => {
+                            item.classList.remove("selected");
+                        });
+                        item.classList.add("selected");
+                    } else {
+                        // 如果已經被選取，清掉所有selected
+                        todoListItemArr.forEach((item) => {
+                            item.classList.remove("selected");
+                        });
+                    }
+                };
+            });
+        }
+
+
+        // 以下尚在測試
+        // 在一個陣列裡面找到目標item並給予其"selected" class，若已是selected則刪除selected
+        function switchSelectedItem(listArr, targetItem) {
+            listArr.forEach((item) => {
+                console.log(item === targetItem);
+                if (item === targetItem) {
+                    item.onclick = () => {
+                        let todoListItemArr = Array.from(document.getElementsByClassName("todo-list-item"));
+                        if (!item.classList.contains("selected")) {
+                            // 如果沒有被選取，清掉所有selected後加上自己的selected
+                            todoListItemArr.forEach((item) => {
+                                item.classList.remove("selected");
+                            });
+                            item.classList.add("selected");
+                        } else {
+                            // 如果已經被選取，清掉所有selected
+                            todoListItemArr.forEach((item) => {
+                                item.classList.remove("selected");
+                            });
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <input type="text" id="txt1">
+        <input type="button" value="加入" id="addBtn">
+    </form>
+
+    <ul>
+        <li>HTML</li>
+        <!-- <li>CSS</li> -->
+    </ul>
+
+    <script>
+        // 1. 建立新節點 => li
+        let newEle = document.createElement("li");
+        // 2. 建立文字節點 => CSS
+        let newText = document.createTextNode("CSS");
+        // 3. 將文字節點加入到新節點
+        newEle.appendChild(newText);
+        // 4. 取得要加入新節點的位置
+        let getUL = document.getElementsByTagName("ul")[0];
+        // 5. 將新節點加入到ul元素的最後一個節點
+        getUL.appendChild(newEle);
+        // 6. 試試看加一個監聽 => OK
+        newEle.onclick = () => {
+            console.log("clicked");
+        };
+
+        // 改寫成function
+        function creatNewTextLi(myText) {
+            // 1. 建立新節點 => li
+            let newEle = document.createElement("li");
+            // 2. 建立文字節點 => myText
+            let newText = document.createTextNode(myText);
+            // 3. 將文字節點加入到新節點
+            newEle.appendChild(newText);
+            // 4. 取得要加入新節點的位置
+            let getUL = document.getElementsByTagName("ul")[0];
+            // 5. 將新節點加入到ul元素的最後一個節點
+            getUL.appendChild(newEle);
+            // 6. 試試看加一個監聽 => OK
+            newEle.onclick = () => {
+                console.log("clicked");
+            };
+        }
+
+        // 使用creatNewTextLi()讓按鈕可以產生新的li
+        let addBtn = document.getElementById("addBtn");
+        addBtn.onclick = ()=>{
+            // 取得文字方塊內容
+            let myText = document.getElementById("txt1").value;
+            creatNewTextLi(myText);
+        };
+    </script>
+</body>
+
+</html>

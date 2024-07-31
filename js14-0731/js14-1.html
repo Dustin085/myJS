@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <!-- 取得選項按鈕值 -->
+    <form action="">
+        <div>
+            請選擇科目：
+            <!-- 同一個題目要用同一個name -->
+            <input type="radio" value="html" name="subject">HTML
+            <input type="radio" value="css" name="subject">CSS
+            <input type="radio" value="js" name="subject">JavaScript
+            <input type="radio" value="react" name="subject">React
+            <input type="radio" value="jq" name="subject">jQuery
+            <input type="button" id="btn" value="送出">
+        </div>
+    </form>
+    <script src="./js14-1.js"></script>
 </body>
+
 </html>
