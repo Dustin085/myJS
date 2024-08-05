@@ -14,31 +14,42 @@
         button {
             cursor: pointer;
         }
+
+        #todo-list-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
 <body>
     <main>
-        <section>
-            <div>
-                <input type="text" id="text-input">
-                <button type="button" id="add-btn">add</button>
-            </div>
-            <div class="todo-list-content">
-                <ul id="todo-list">
-                    <li class="todo-list-item">123</li>
-                    <li class="todo-list-item">234</li>
-                    <li class="todo-list-item">345</li>
-                </ul>
+        <section id="todo-list-section">
+            <div class="todo-list-main">
                 <div>
-                    <button id="del-btn">del</button>
-                    <button id="clear-btn">clear</button>
+                    <input type="text" id="text-input">
+                    <button type="button" id="add-btn">add</button>
+                </div>
+                <div class="todo-list-content">
+                    <ul id="todo-list">
+                        <li class="todo-list-item">123</li>
+                        <li class="todo-list-item">234</li>
+                        <li class="todo-list-item">345</li>
+                    </ul>
+                    <div>
+                        <button id="del-btn">del</button>
+                        <button id="clear-btn">clear</button>
+                    </div>
                 </div>
             </div>
+
         </section>
     </main>
     <script>
-        // 按下add新增li => OK，還可加強功能
+        // 按下add新增li => OK
         // li點擊後選取 => OK，單選，被選者變紅色
         // 選取者刪除 => OK
         // 清除按鈕 => OK

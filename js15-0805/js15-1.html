@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        button {
+            padding: 4px 8px;
+        }
+
+        .todo-list-main {
+            width: 300px;
+            border: solid 1px black;
+            padding: 20px;
+        }
+
+        .input-box {
+            margin-bottom: 10px;
+        }
+
+        .todo-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .listItemPara {
+            width: 80%;
+            font-size: 1.2rem;
+            line-height: 1;
+            word-break: break-word;
+        }
+
+        .listItemPara.selected {
+            color: red;
+        }
+
+        li,
+        button {
+            cursor: pointer;
+        }
+
+        #todo-list-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section id="todo-list-section">
+            <div class="todo-list-main">
+                <div class="input-box">
+                    <input type="text" id="text-input">
+                    <button type="button" id="add-btn">加入</button>
+                </div>
+                <div class="todo-list-content">
+                    <ul id="todo-list">
+                        <li class="todo-list-item">
+                            <p class="listItemPara">HTML</p>
+                            <button>刪除</button>
+                        </li>
+                        <li class="todo-list-item">
+                            <p class="listItemPara">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
+                                doloremque, voluptas quidem ipsum soluta facere quo ad praesentium itaque quia mollitia
+                                sit optio numquam autem dolorem quis delectus dolore. Ab!</p>
+                            <button>刪除</button>
+                        </li>
+                    </ul>
+                    <div>
+                        <button id="del-btn">刪除所選項目</button>
+                        <button id="clear-btn">清空</button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+    <script>
+        // 按下add新增li => OK
+        // li點擊後選取 => OK，單選，被選者變紅色
+        // 選取者刪除 => OK
+        // 清除按鈕 => OK
+        // 把每一個li改寫成內含一個文字p和刪除btn => OK
+        // 做出刪除btn功能，並解決掉改寫出現的bug => OK
+        // 把新增li寫成函式
+        // 直接使用js加入li，捨棄使用html寫出li的方法
+        // 重整全部程式碼，弄得乾淨一點
+
+        // add按鈕監聽
+        let addBtn = document.getElementById("add-btn");
+        let todoList = document.getElementById("todo-list");
+        addBtn.onclick = () => {
+            let newListItem = "";
+            let inputEle = document.getElementById("text-input");
+            let delBtnInItem = document.createElement("button");
+            delBtnInItem.innerHTML = "刪除";
+            // trim()刪除前後多餘的空白
+            if (inputEle.value.trim() != "") {
+                // newListItem = `<li class="todo-list-item">${inputEle.value}</li>`;
+                newListItem = document.createElement("li");
+                let newPara = document.createElement("p");
+                newPara.classList.add("listItemPara");
+                newPara.textContent = inputEle.value;
+                newListItem.appendChild(newPara);
+                newListItem.classList.add("todo-list-item");
+                newListItem.appendChild(delBtnInItem);
+
+                // 加入新li的刪除按鈕的監聽
+                delBtnInItem.onclick = () => {
+                    newListItem.remove();
+                };
+
+                todoList.appendChild(newListItem);
+                // todoList.innerHTML += newListItem;
+                addOnclickToListItem();
+            }
+
+            // 清空輸入方塊
+            inputEle.value = "";
+        };
+
+        // 刪除按鈕
+        let delBtn = document.getElementById("del-btn");
+        delBtn.onclick = () => {
+            // 刪除具有"selected" class的元素
+            if (todoList.getElementsByClassName("selected")[0]) {
+                let eleToRemove = todoList.getElementsByClassName("selected")[0].parentNode;
+                eleToRemove.remove();
+            }
+
+            // addOnclickToListItem();
+        };
+
+        // 清除按鈕
+        let clearBtn = document.getElementById("clear-btn");
+        clearBtn.onclick = () => {
+            todoList.innerHTML = "";
+        };
+
+        // 在輸入欄位按enter可以觸發addBtn.click()
+        let inputEle = document.getElementById("text-input");
+        inputEle.onkeydown = (event) => {
+            if (event.key == "Enter") {
+                addBtn.click();
+            }
+        };
+
+        // 初始化listItem的監聽 
+        addOnclickToListItem();
+
+
+        // 加入li內p的選取監聽，單選且可以取消選取
+        function addOnclickToListItem() {
+            let todoListItemArr = Array.from(document.getElementsByClassName("todo-list-item"));
+            todoListItemArr.forEach((item) => {
+                // li內todo-list-item的監聽
+                let itemPara = item.querySelector(".listItemPara");
+                itemPara.onclick = () => {
+                    if (!itemPara.classList.contains("selected")) {
+                        // 如果沒有被選取，清掉所有selected後加上自己的selected
+                        todoListItemArr.forEach((item) => {
+                            let itemPara = item.querySelector(".listItemPara");
+                            itemPara.classList.remove("selected");
+                        });
+                        itemPara.classList.add("selected");
+                    } else {
+                        // 如果已經被選取，清掉所有selected
+                        todoListItemArr.forEach((item) => {
+                            let itemPara = item.querySelector(".listItemPara");
+                            itemPara.classList.remove("selected");
+                        });
+                    }
+                };
+
+                // li內刪除按鈕的監聽
+                let delBtnInItem = item.querySelector("button");
+                delBtnInItem.onclick = () => {
+                    item.remove();
+                };
+            });
+        }
+
+        // 建立新的li
+        
+
+    </script>
+</body>
+
+</html>
