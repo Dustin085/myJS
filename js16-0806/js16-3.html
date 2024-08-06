@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 事件基本語法 -->
+    <!-- <div 事件名稱="程式碼">標籤內容</div> -->
+    <!-- <button 事件名稱="程式碼">按鈕內容</button> -->
+
+    <div onclick="changeP1();">按一下變更內容</div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim fuga perferendis, quisquam ex illum blanditiis
+        beatae sequi hic, deleniti eius voluptates corrupti similique quas ea temporibus optio nostrum. Enim, eligendi.
+    </p>
+    <h2 onclick="changeP2();">標題2</h2>
+    <p id="p2" class="p2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint magnam, facilis aperiam, facere
+        debitis non
+        praesentium eveniet hic doloribus officia sunt inventore dignissimos voluptatum provident veritatis rerum odit!
+        Itaque, voluptas.</p>
+
+    <script>
+        // 更改第一個段落
+        function changeP1() {
+            document.querySelector("p").innerHTML = "你好";
+        }
+
+        // 更改第二個段落
+        function changeP2() {
+            // document.querySelectorAll("p")[1].innerHTML = "你好好1";
+            // document.querySelector("#p2").innerHTML = "你好好2";
+            document.querySelector(".p2").innerHTML = "你好好3";
+        }
+
+        console.log(true ? "Yes" : "no");
+        console.log(false ? "Yes" : "no");
+
+
+        // let myInterval
+        // let i = 0
+        // function changeDiv() {
+        //     document.querySelector("p").textContent = "你好" + i;
+        //     myInterval = setInterval(() => {
+        //         i += 1;
+        //         document.querySelector("p").textContent = "你好" + i;
+        //     }, 1000)
+        // }
+    </script>
+</body>
+
+</html>

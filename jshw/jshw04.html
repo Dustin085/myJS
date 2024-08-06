@@ -161,6 +161,9 @@
             newDelBtn.innerHTML = "刪除";
             // 加入新li的刪除按鈕的監聽
             newDelBtn.onclick = () => {
+                // 刪除線語法
+                // newListItem.style.textDecoration = "line-through";
+                // 刪除整個li
                 newListItem.remove();
             };
             newListItem.appendChild(newDelBtn);

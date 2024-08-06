@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            border: solid 1px black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span onclick="changeToAbout()">關於我</span>
+        <span onclick="changeToExps()">學經歷</span>
+        <span onclick="changeToContact()">聯絡我</span>
+        <span onclick="changeToNews()">最新消息</span>
+    </div>
+    <hr>
+    <div id="about">
+        大家好，我是某某某
+    </div>
+    <div id="exps">
+        XX大學畢業
+    </div>
+    <div id="contact">
+        email: ???@gmail.com<br>
+        mobile: 0999999999
+    </div>
+    <div id="news">
+        最新消息
+    </div>
+    <script>
+        let aboutEle = document.querySelector("#about");
+        let expsEle = document.querySelector("#exps");
+        let contactEle = document.querySelector("#contact");
+        let newsEle = document.querySelector("#news");
+        // 初始化
+        init();
+
+        // 切換到關於我
+        function changeToAbout() {
+            closeAll();
+            aboutEle.style.display = "block";
+        }
+
+        // 切換到學經歷
+        function changeToExps() {
+            closeAll();
+            expsEle.style.display = "block";
+        }
+
+        // 切換到聯絡我
+        function changeToContact() {
+            closeAll();
+            contactEle.style.display = "block";
+        }
+
+        // 切換到最新消息
+        function changeToNews() {
+            closeAll();
+            newsEle.style.display = "block";
+        }
+
+
+        // 關閉所有的div
+        function closeAll() {
+            aboutEle.style.display = "none";
+            expsEle.style.display = "none";
+            contactEle.style.display = "none";
+            newsEle.style.display = "none";
+        }
+
+        // 初始化
+        function init() {
+            closeAll();
+            changeToAbout();
+        }
+
+        // function changeToWho(targetEle) {
+        //     closeAll();
+        //     targetEle.style.display = "block";
+        // }
+    </script>
+</body>
+
+</html>
