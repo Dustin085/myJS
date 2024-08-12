@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 調用被選取目標的內建屬性 -->
+    <button id="btn1">顯示訊息</button>
+    <!-- 按鈕類型 -->
+    <script>
+        let btn1Ele = document.getElementById("btn1");
+        // ev => event物件
+        btn1Ele.addEventListener("click", (ev) => {
+            alert("早安");
+            // 顯示event物件中的所有資訊
+            // console.log(ev);
+
+            // 取得事件類型
+            console.log(ev.type);
+
+            // 取得事件目標
+            console.log(ev.target);
+
+            // 取得事件目標的文字
+            console.log(ev.target.innerHTML);
+        });
+    </script>
+</body>
+
+</html>

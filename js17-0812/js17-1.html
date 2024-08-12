@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 事件運作方法 -->
+    <!-- 方法1： 程式敘述寫在標籤內的事件中 -->
+    <button onclick="alert('早安1');">顯示訊息1</button>
+    <!-- 方法2： 呼叫函式 -->
+    <button onclick="sayHi();">顯示訊息2</button>
+    <!-- 方法3： 監聽函式事件 -->
+    <button id="alert-btn3">顯示訊息3</button>
+    <!-- 方法4： 呼叫事件 -->
+    <button id="alert-btn4">顯示訊息4</button>
+    <!-- 方法5： 呼叫事件(箭頭函式) -->
+    <button id="alert-btn5">顯示訊息5</button>
+
+    <script>
+        let alertBtn3Ele = document.querySelector("#alert-btn3");
+        alertBtn3Ele.addEventListener("click", () => {
+            alert("早安3");
+        });
+
+        let alertBtn4Ele = document.querySelector("#alert-btn4");
+        // 此行的sayHi2不加()
+        alertBtn4Ele.onclick = sayHi4;
+        function sayHi4() {
+            alert("早安4");
+        }
+
+        let alertBtn5Ele = document.getElementById("alert-btn5");
+        alertBtn5Ele.onclick = () => {
+            alert("早安5");
+        };
+
+        function sayHi() {
+            alert("早安2");
+        }
+    </script>
+</body>
+
+</html>

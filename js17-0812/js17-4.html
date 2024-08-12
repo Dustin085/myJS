@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 當游標離開文字方塊時，檢查輸入的內容不足5個字時，顯示訊息 -->
+    <form action="">
+        <label for="uid">會員編號</label>
+        <!-- size => 文字方塊寬度，maxlength => 限制最多字數 -->
+        <input type="text" id="uid" size="15" maxlength="5"><br>
+        <label for="mobile">手機號碼</label>
+        <input type="text" id="mobile" size="15" maxlength="10"><br>
+        <!-- 不足5個字顯示err -->
+        <span id="errMsg"></span><br>
+        <input type="submit" value="送出">
+    </form>
+
+    <script>
+        let uidEle = document.getElementById("uid");
+        uidEle.addEventListener("blur", function (ev) {
+            checkWordNum(ev, 5, "會員編號");
+        });
+
+        let mobileEle = document.getElementById("mobile");
+        mobileEle.addEventListener("blur", function (ev) {
+            checkWordNum(ev, 10, "手機號碼");
+        });
+
+        function checkWordNum(ev, numLength, lblName) {
+            // 取得errMsg的位置
+            let errMsgEle = document.getElementById("errMsg");
+
+            // 檢查文字方塊內容是否有5個字
+            if (ev.target.value.length != numLength) {
+                // 若沒有，則顯示提醒訊息
+                errMsgEle.textContent = `${lblName}必須是${numLength}個字`;
+            } else {
+                // 預設errMsgEle內容為空字串
+                errMsgEle.textContent = "";
+            }
+        }
+    </script>
+</body>
+
+</html>
