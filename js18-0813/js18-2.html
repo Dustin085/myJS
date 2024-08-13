@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .color-block {
+            width: 100px;
+            height: 100px;
+            border: solid 1px black;
+            margin-bottom: 20px;
+            transition: .35s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="color-block"></div>
+        <div class="btn-box">
+            <button class="change-color-btn btn-to-red">紅色</button>
+            <button class="change-color-btn btn-to-green">綠色</button>
+            <button class="change-color-btn btn-to-blue">藍色</button>
+            <button class="change-color-btn btn-to-reset">還原</button>
+        </div>
+    </div>
+
+
+    <script>
+        let colorBlock = document.querySelector(".color-block");
+        let colorTable = {
+            "紅色": "red",
+            "綠色": "green",
+            "藍色": "blue",
+            // 屬性設為空字串時會還原其屬性
+            "還原": ""
+        };
+        let changeColorBtnArr = Array.from(document.querySelectorAll(".change-color-btn"));
+        changeColorBtnArr.forEach((btn) => {
+            btn.onclick = function () {
+                let targetColor = colorTable[this.textContent];
+                changeEleBgColor(colorBlock, targetColor);
+            };
+        });
+
+        function changeEleBgColor(ele, bgColor = "") {
+            ele.style.backgroundColor = bgColor;
+        }
+
+        /*
+        let btnToRed = document.querySelector(".btn-to-red");
+        let btnToGreen = document.querySelector(".btn-to-green");
+        let btnToBlue = document.querySelector(".btn-to-blue");
+        btnToRed.onclick = () => {
+            changeEleBgColor(colorBlock, "red");
+        };
+        btnToGreen.onclick = () => {
+            changeEleBgColor(colorBlock, "green");
+        };
+        btnToBlue.onclick = () => {
+            changeEleBgColor(colorBlock, "blue");
+        };
+        */
+
+
+    </script>
+</body>
+
+</html>

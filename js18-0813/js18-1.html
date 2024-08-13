@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #msg {
+            font-size: 32px;
+            display: inline-block;
+            color: blueviolet;
+            border-radius: 20px;
+            padding: 10px 20px;
+            transition: .35s;
+        }
+
+        .big-text{
+            font-size: 64px!important;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 使用style屬性動態改變文字色彩 -->
+    <p id="msg">Hello</p>
+
+    <script>
+        let msgEle = document.querySelector("#msg");
+        msgEle.addEventListener("mouseover", function () {
+            changeEleColor(this, "blue", "rgb(191, 161, 189)");
+            this.classList.add("big-text");
+        });
+        
+        msgEle.addEventListener("mouseout", function () {
+            changeEleColor(this);
+            this.classList.remove("big-text");
+        });
+
+        // 變色函式，會改變ele的color和bgColor
+        // 屬性設定空字串會使屬性回到一開始的設定
+        function changeEleColor(ele, color = "", bgColor = "") {
+            ele.style.color = color;
+            ele.style.backgroundColor = bgColor;
+        }
+    </script>
+</body>
+
+</html>

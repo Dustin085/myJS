@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: solid 1px black;
+        }
+
+        figure{
+            margin: 20px 10px;
+            border-radius: 10px;
+            /* border: solid 1px black; */
+            overflow: hidden;
+            box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.5);
+        }
+
+        #my-figure {
+            width: 500px;
+            height: 500px;
+        }
+
+        .ctrl-btn-box {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .ctrl-btn {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            transition: .35s;
+        }
+
+        .ctrl-btn:hover{
+            box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.7);
+            transform: scale(1.05);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 換圖效果 -->
+    <div class="wrapper">
+        <figure id="my-figure"><img src="../images/boy-4468350_1280.jpg" alt=""></figure>
+        <div class="ctrl-btn-box">
+            <figure class="ctrl-btn"><img src="../images/boy-4468350_1280.jpg" alt=""></figure>
+            <figure class="ctrl-btn"><img src="../images/child-3045207_1280.jpg" alt=""></figure>
+            <figure class="ctrl-btn"><img src="../images/girl-477015_1280.jpg" alt=""></figure>
+            <figure class="ctrl-btn"><img src="../images/girl-3194977_1280.jpg" alt=""></figure>
+        </div>
+    </div>
+
+
+    <script>
+        let myFigure = document.querySelector("#my-figure");
+        // 取得換圖目標
+        let targetImg = myFigure.querySelector("img");
+        let ctrlBtnArr = Array.from(document.querySelectorAll(".ctrl-btn"));
+        ctrlBtnArr.forEach((ctrlBtn) => {
+            ctrlBtn.onclick = function () {
+                targetImg.src = ctrlBtn.querySelector("img").src;
+            };
+        });
+
+
+        // myFigure.onmouseover = function () {
+        //     targetImg.src = "../images/child-3045207_1280.jpg";
+        // }
+        // myFigure.onmouseout = function () {
+        //     targetImg.src = "../images/boy-4468350_1280.jpg";
+        //     // 不可以用""否則會找不到圖
+        //     // targetImg.src = "";
+        // }
+
+    </script>
+</body>
+
+</html>
