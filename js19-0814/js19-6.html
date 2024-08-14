@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 300px;
+            border: solid 1px black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 滑鼠事件 -->
+    <div id="box">
+        <h2 class="textHere">Hi</h2>
+    </div>
+
+
+    <script>
+        let boxEle = document.getElementById("box");
+        boxEle.addEventListener("mousemove", function (ev) {
+            let textHereEle = document.querySelector(".textHere");
+            textHereEle.innerHTML =
+                `
+                screenX = ${ev.screenX}, screenY = ${ev.screenY}<br>
+                pageX = ${ev.pageX}, pageY = ${ev.pageY}<br>
+                clientX = ${ev.clientX}, clientY = ${ev.clientY}<br>
+                offsetX = ${ev.offsetX}, offsetY = ${ev.offsetY}
+                `;
+        });
+    </script>
+</body>
+
+</html>

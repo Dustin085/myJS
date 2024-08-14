@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li id="user-id">帳號：</li>
+            <li id="user-pw">密碼：</li>
+        </ul>
+    </div>
+
+    <script>
+        // 取得所有LS中的資料
+        // let data = window.localStorage;
+        // console.log(data);
+        // 指定取出LS中的某個資料
+        let uid = window.localStorage.getItem("user_id");
+        // 取出帳號
+        let userIdEle = document.querySelector("#user-id");
+        userIdEle.textContent = `帳號：${uid}`;
+        // 取出密碼
+        let upw = window.localStorage.getItem("user_pw");
+        let userPwEle = document.querySelector("#user-pw");
+        userPwEle.textContent = `密碼：${upw}`;
+
+        
+        // 檢查使用者測試的帳密是否為存在
+        if (uid == "test" && upw == "test") {
+            alert("登入成功");
+        } else {
+            alert("登入失敗");
+            // 回到登入頁
+            window.location.href = "./js19-1.html";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 線上時鐘 -->
+    <div id="clock"></div>
+    <button type="button" id="btnStop">停止時鐘</button>
+
+    <script>
+        // 網頁載入完畢時
+        window.addEventListener("load", function () {
+            // 每一秒鐘觸發一次funtion(更新時間)
+            let timer = window.setInterval(function () {
+                // 取得clock
+                let clockEle = document.querySelector("#clock");
+                // 更新時間
+                clockEle.textContent = "目前時間： " + (new Date()).toLocaleString();
+            }, 1000);
+
+            // 停止時間按鈕的監聽
+            let btnStopEle = document.querySelector("#btnStop");
+            btnStopEle.addEventListener("click", function () {
+                window.clearInterval(timer);
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

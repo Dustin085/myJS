@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <h1 class="myH1"></h1> -->
+    <form action="./js19-2b.html" id="my-form">
+        <label for="user-name">姓名</label>
+        <input type="text" id="user-name">
+        <input type="submit" value="送出">
+    </form>
+
+    <br>
+    <button type="button" id="del-btn">刪除姓名</button>
+
+    <script>
+        // 刪除姓名，LS裡面的user-name
+        let delBtnEle = document.querySelector("#del-btn");
+        delBtnEle.addEventListener("click", function () {
+            if(window.confirm("確定要刪除姓名資料嗎？")){
+                window.localStorage.removeItem("user-name");
+                alert("姓名資料已刪除");
+            }else{
+                alert("刪除取消");
+            }
+        });
+
+        // 取得表單
+        let myForm = document.querySelector("#my-form");
+        myForm.addEventListener("submit", function (ev) {
+            if (window.confirm("確定要送出表單資料嗎？")) {
+                // 取得姓名文字方塊
+                let userNameEle = document.querySelector("#user-name");
+                // 寫入LS時機點，跨頁使用時再寫
+                // 寫入姓名資料到LS
+                window.localStorage.setItem("user-name", userNameEle.value);
+                alert(`使用者姓名： ${userNameEle.value}，` + "成功送出！");
+            } else {
+                // 取消預設行為(取消表單的action)
+                ev.preventDefault();
+                alert("取消送出！");
+            }
+        });
+
+        // 使用確認對話方塊
+        // if(window.confirm("你確定嗎？")){
+        //     document.querySelector(".myH1").textContent = "你確定";
+        // }else{
+        //     document.querySelector(".myH1").textContent = "你不確定";
+        // }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2 class="show-time"></h2>
+
+    <script>
+        window.onload = function () {
+            let landingTime = new Date();
+            let timer = window.setInterval(function () {
+                let showTimeEle = document.querySelector(".show-time");
+                let stayTime = ((new Date()) - landingTime) / 1000;
+                showTimeEle.textContent = `您已經停留在本頁： ${stayTime}秒`;
+            }, 100);
+        };
+    </script>
+</body>
+
+</html>

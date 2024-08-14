@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            row-gap: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>變更下拉式清單的項目時，開啟網頁</h2>
+        <label for="website">選擇網站：</label>
+        <select name="website" id="website">
+            <option value="https://www.w3schools.com/">w3schools</option>
+            <option value="https://developer.mozilla.org/en-US/">mdn</option>
+            <option value="https://cssgridgarden.com/">grid-garden</option>
+        </select>
+    </div>
+
+    <div>
+        <input type="checkbox" name="agree" id="agree">
+        <label for="agree">我同意合約</label>
+        <button type="button" id="submitBtn">提交按鈕</button>
+        <p id="warningText"></p>
+    </div>
+
+
+    <script>
+        let websiteEle = document.querySelector("#website");
+        websiteEle.addEventListener("change", function () {
+            // 取得下拉選單中的值並開新視窗
+            window.open(this.value);
+        });
+
+        let submitBtnEle = document.querySelector("#submitBtn");
+        submitBtnEle.addEventListener("click", function (ev) {
+            ev.preventDefault();
+            let agreeEle = document.querySelector("#agree");
+            let warningTextEle = document.querySelector("#warningText");
+            if (!agreeEle.checked) {
+                warningTextEle.style.color = "red";
+                warningTextEle.textContent = "警告！請同意合約";
+            }else{
+                warningTextEle.style.color = "";
+                warningText.textContent = "已提交您的請求";
+            }
+        });
+    </script>
+</body>
+
+</html>

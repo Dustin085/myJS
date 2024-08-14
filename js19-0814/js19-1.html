@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="./js19-1-login.html">
+        <label for="uid">帳號</label>
+        <input type="text" id="uid">
+        <br>
+        <label for="upw">密碼</label>
+        <input type="text" id="upw">
+        <br><br>
+        <!-- 要檢查就用button，不檢查就用submit，或是用submit但跳轉到chkData.php之類的檔案 -->
+        <input id="login-btn1" type="submit" value="登入1">
+        <input id="login-btn2" type="button" value="登入2">
+    </form>
+
+    <!-- 存放資料在本機端瀏覽器中的Local Storage -->
+    <script>
+        // 登入1按鈕，使用submit來跳轉頁面
+        let loginBtn1 = document.querySelector("#login-btn1");
+        loginBtn1.addEventListener("click", () => {
+            // 帳號
+            let uidInputEle = document.querySelector("#uid");
+            // 寫入到localStorage
+            window.localStorage.setItem("user_id", uidInputEle.value);
+            // 密碼
+            let upwInputEle = document.querySelector("#upw");
+            window.localStorage.setItem("user_pw", upwInputEle.value);
+        });
+
+        // 登入2按鈕
+        let loginBtn2 = document.querySelector("#login-btn2");
+        loginBtn2.addEventListener("click", () => {
+            // 帳號
+            let uidInputEle = document.querySelector("#uid");
+            // 寫入到localStorage
+            window.localStorage.setItem("user_id", uidInputEle.value);
+            // 密碼
+            let upwInputEle = document.querySelector("#upw");
+            window.localStorage.setItem("user_pw", upwInputEle.value);
+            // 跳轉到指定頁面
+            window.location.href = "./js19-1-login.html";
+        });
+    </script>
+</body>
+
+</html>
