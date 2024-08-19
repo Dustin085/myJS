@@ -38,8 +38,8 @@
         })
         dropItem.addEventListener("drop", function (ev) {
             ev.preventDefault();
-            console.log(ev);
-            ev.target.src = ev.srcElement.src;
+            console.log(ev.dataTransfer.getData("text/html"));
+            ev.target.setAttribute("src", "../images/boy-4468350_1280.jpg");
             
 
         });
